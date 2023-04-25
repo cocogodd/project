@@ -1,0 +1,12 @@
+hầu hết đều sử dụng các component và class của bootstrap để viết
+Ví dụ các component hay dùng
+
+Grid col => Chia khối và hàng cho từng phần tử
+Card => Tạo card và sản phẩm
+navbar => Tạo menu
+flex => Tạo khối, căn chỉnh hàng cột
+
+
+folder=>
+asset=> image => lưu trữ ảnh
+asset => css => Lưu trữ file css
