@@ -13,6 +13,20 @@
 </head>
 
 <body>
+    <?php
+    function connect()
+    {
+        $conn = new mysqli('localhost', 'root', '12345678', 'project');
+        if ($conn->connect_error) {
+            die('Kết nối thất bại' . $conn->connect_error);
+        }
+        return $conn;
+    }
+    $conn = connect();
+    $categories = $conn->query("SELECT id, menu_name from categories");
+    $categories_type = $conn->query("SELECT id, category_name,Categories_id from categories_type");
+
+    ?>
     <header>
         <div style="background: #1E1E1E">
             <div class="d-flex justify-content-end container ">
@@ -22,8 +36,8 @@
         </div>
         <div class="container pt-2 pb-2 d-flex justify-content-between align-items-center">
             <a href="./homePage.php"><img src="./assets/images/logo.png" alt=""></a>
-            <form action="" class="form-search">
-                <input type="text" placeholder="What are you looking for?">
+            <form action="searchPage.php" method="post" class="form-search">
+                <input type="text" name="search" placeholder="What are you looking for?">
                 <button type="submit" class="btn  btn-container ">Search</button>
             </form>
             <div>
@@ -39,56 +53,23 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Cookware
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="categoryPage.php?category_type_id=1">Cooking Pans</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_type_id=2">Frying Pans</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_type_id=3">Cookware Sets</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_type_id=4">Handis</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_type_id=5">Kadais [Karahi]</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_type_id=6">Grill pans</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_type_id=7">Tawas</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_type_id=8">Egg Poachers</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_type_id=9">Steamers</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Refrigeration
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="categoryPage.php?category_id=10">Freezers</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_id=11">Refrigerators</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Appliances
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="categoryPage.php?category_id=12">Bread Makers</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_id=13">Coffee Makers</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_id=14">Ice-Cream and sorbet makers</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_id=15">Electric Kettles</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_id=16">Food Choppers</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_id=17">Toasters</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Food Storage
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="categoryPage.php?category_id=18">Flask</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_id=19">Spice Jars</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_id=20">Storage Bags</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_id=21">Lunch Boxes</a>
-                            <a class="dropdown-item" href="categoryPage.php?category_id=22">Vacuum bottles</a>
-                        </div>
-                    </li>
+                    <?php foreach ($categories as $category) : ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?= $category['menu_name'] ?>
+                            </a>
+                            <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                                <?php foreach ($categories_type as $category_type) : ?>
+                                    <?php if ($category['id'] == $category_type['Categories_id']) {
+                                        echo "
+                                        <a class='dropdown-item' href='categoryPage.php?category_type_id={$category_type['id']}'>{$category_type['category_name']}</a>
+                                    ";
+                                    }
+                                    ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </nav>
