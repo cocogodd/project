@@ -62,7 +62,7 @@ include('header.php');
                     <img src="./assets/images/slide5.jpg" class="card-img" alt="...">
                     <div class="card-img-overlay">
                         <h5 class="card-title">Cookware</h5>
-                        <a href="./categoryTypePage.php?category_id=1">Shop Now</a>
+                        <a href="./categoryPage.php?category_id=1">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@ include('header.php');
                     <img src="./assets/images/slide11.jpg" class="card-img" alt="...">
                     <div class="card-img-overlay">
                         <h5 class="card-title">Refrigeration</h5>
-                        <a href="./categoryTypePage.php?category_id=2">Shop Now</a>
+                        <a href="./categoryPage.php?category_id=2">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@ include('header.php');
                     <img src="./assets/images/slide8.jpg" class="card-img" alt="...">
                     <div class="card-img-overlay">
                         <h5 class="card-title">Appliances</h5>
-                        <a href="./categoryTypePage.php?category_id=3">Shop Now</a>
+                        <a href="./categoryPage.php?category_id=3">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@ include('header.php');
                     <img src="./assets/images/slide4.jpg" class="card-img" alt="...">
                     <div class="card-img-overlay">
                         <h5 class="card-title">Food Storage</h5>
-                        <a href="./categoryTypePage.php?category_id=1=4">Shop Now</a>
+                        <a href="./categoryPage.php?category_id=1=4">Shop Now</a>
                     </div>
                 </div>
             </div>
