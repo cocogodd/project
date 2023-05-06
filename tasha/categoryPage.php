@@ -134,7 +134,7 @@ $conn = connect(); ?>
           <div class="product-item">
             <div class="product-top">
               <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-thumb">
-                <img src="./assets/images/slide1.jpg" alt="">
+                <img src="./upload/<?php echo $product['image']?>" alt="">
               </a>
               <a href="" class="buy-now">Buy Now</a>
             </div>
@@ -168,7 +168,7 @@ $conn = connect(); ?>
           <div class="product-item">
             <div class="product-top">
               <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-thumb">
-                <img src="./assets/images/slide1.jpg" alt="">
+                <img src="./upload/<?php echo $product['image']?>" alt="">
               </a>
               <a href="" class="buy-now">Buy Now</a>
             </div>
