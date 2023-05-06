@@ -36,7 +36,7 @@
         </div>
         <div class="container pt-2 pb-2 d-flex justify-content-between align-items-center">
             <a href="./homePage.php"><img src="./assets/images/logo.png" alt=""></a>
-            <form action="searchPage.php" method="post" class="form-search">
+            <form action="searchPage.php" method="get" class="form-search">
                 <input type="text" name="search" placeholder="What are you looking for?">
                 <button type="submit" class="btn  btn-container ">Search</button>
             </form>
