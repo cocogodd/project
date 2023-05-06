@@ -15,7 +15,7 @@ if (!function_exists('connect')) {
 }
 
 $conn = connect();
-$name_search = $_POST['search'];
+$name_search = $_GET['search'];
 $products = $conn->query("SELECT product.*,categories.menu_name,categories.id as category_id from product
     join categories_type on categories_type.id=product.categories_type_id
     join categories on categories.id=categories_type.Categories_id
@@ -29,8 +29,7 @@ $products = $conn->query("SELECT product.*,categories.menu_name,categories.id as
             <div class="product-item">
                 <div class="product-top">
                     <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-thumb">
-                        <img src="./assets/images/slide1.jpg" alt="">
-                    </a>
+                        <img src="./upload/<?php echo $product['image'] ?>">
                     <a href="" class="buy-now">Buy Now</a>
                 </div>
                 <div class="product-infor">
