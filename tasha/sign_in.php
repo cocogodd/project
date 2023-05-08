@@ -40,7 +40,7 @@
    
 <div id="wrapper">
 <div> 
-    <img src="./assets/images/logo.png" alt="logo" >
+<a href="./homePage.php"><img src="./assets/images/logo.png" alt=""></a>
    </div> 
     <div class="container p-5 ">
         <div class="row justify-content-around ">

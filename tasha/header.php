@@ -30,8 +30,8 @@
     <header>
         <div style="background: #1E1E1E">
             <div class="d-flex justify-content-end container ">
-                <a class="pt-1 pb-1 pr-2 pl-2 text-white" href="">Sign up</a>
-                <a class="pt-1 pb-1 pr-2 pl-2 text-white" href="">Sign in</a>
+                <a class="pt-1 pb-1 pr-2 pl-2 text-white" href="sign_up.php">Sign up</a>
+                <a class="pt-1 pb-1 pr-2 pl-2 text-white" href="sign_in.php">Sign in</a>
             </div>
         </div>
         <div class="container pt-2 pb-2 d-flex justify-content-between align-items-center">
