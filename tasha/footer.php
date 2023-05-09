@@ -1,16 +1,29 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <img src="./assets/images/logo.png" alt="">
         <div class="mt-4">
           <p class="mb-0">1-800-234-9000</p>
           <p class="mb-0">tasha@yourcompany.com</p>
         </div>
+        <div class="mt-2">
+          <a class="p-2" href="https://www.facebook.com/profile.php?id=100049345187328"><i class="fa-brands fa-facebook"></i></a>
+          <a class="p-2" href="https://www.instagram.com/quocuong__/"><i class="fa-brands fa-instagram"></i></a>
+          <a class="p-2" href="https://www.youtube.com/channel/UCUQuQqsoq9h440BXNKOw1rQ"><i class="fa-brands fa-youtube"></i></a>
+        </div>
       </div>
-      <div class="col-8">
+      <div class="col-2 d-flex flex-column ">
+        <h5 class=" mb-3">Support center</h5>
+      <a class="text-white mb-3"href="">Manuals</a>
+      <a class="text-white mb-3"href=""> Expert Tips</a>
+      <a class="text-white mb-3"href="">Register Complain</a>
+      <a class="text-white mb-3"href="">Feedback</a>
+      </div>
+      <div class="col-7">
         <div class="row">
           <div class="col-3">
+          <h5 class=" mb-3">Address</h5>
             <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
               <a class="nav-link active" id="trieu-khuc-tab" data-toggle="pill" href="#trieu-khuc" role="tab" aria-controls="v-pills-home" aria-selected="true">Triều Khúc</a>
               <a class="nav-link" id="le-thanh-nghi-tab" data-toggle="pill" href="#le-thanh-nghi" role="tab" aria-controls="v-pills-profile" aria-selected="false">54 Lê Thanh Nghị</a>
