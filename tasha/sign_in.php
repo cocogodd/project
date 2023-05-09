@@ -70,6 +70,8 @@
 </body>
 </html>
 <?php 
+    session_start();
+    unset($_SESSION['user']);
      $conn = new mysqli('localhost:3306','root','12345678','project');
      if($conn->connect_error) {
          die("ket noi that bai" .$conn->connect_error);
@@ -90,7 +92,7 @@
                     echo '<script>alert("Sai password")</script>';
                 }
                 if ($name == $row['name'] && $password == $row['password']) {
-
+                    $_SESSION["user"] = $name;
                     header("Location: homePage.php");
                 }
                 

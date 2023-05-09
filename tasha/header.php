@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    
     <?php
     function connect()
     {
@@ -22,23 +23,43 @@
         }
         return $conn;
     }
+    session_start();
     $conn = connect();
     $categories = $conn->query("SELECT id, menu_name from categories");
     $categories_type = $conn->query("SELECT id, category_name,Categories_id from categories_type");
-
+    $user;
+    if(isset($_SESSION['user'])){
+        $user = $_SESSION['user'];
+    }else{
+       $user=null ;
+    }
     ?>
     <header>
-        <div style="background: #1E1E1E">
-            <div class="d-flex justify-content-end container ">
-                <a class="pt-1 pb-1 pr-2 pl-2 text-white" href="sign_up.php">Sign up</a>
-                <a class="pt-1 pb-1 pr-2 pl-2 text-white" href="sign_in.php">Sign in</a>
+        <div>
+            <div class="d-flex justify-content-end align-items-center container pt-2">
+                <?php if ($user) { ?>
+                    <div class="dropdown show">
+                        <span id="avatar" class="d-flex justify-content-center align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(substr($user, 0, 1)) ?></span>
+
+                        <div class="dropdown-menu" aria-labelledby="avatar">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="sign_in.php">Logout</a>
+                        </div>
+                    </div>
+                <?php } 
+                else{?>
+                
+                <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="sign_up.php">Sign up</a>
+                <div class="navbar__link-separator"></div>
+                <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="sign_in.php">Sign in</a>
+                <?php }?>
             </div>
         </div>
-        <div class="container pt-2 pb-2 d-flex justify-content-between align-items-center">
+        <div class="container  pb-2 d-flex justify-content-between align-items-center">
             <a href="./homePage.php"><img src="./assets/images/logo.png" alt=""></a>
             <form action="searchPage.php" method="get" class="form-search">
-                <input type="text" name="search" placeholder="What are you looking for?">
-                <button type="submit" class="btn  btn-container ">Search</button>
+                <input type="search" name="search" placeholder="Search">
+                <button type="submit">Search</button>
             </form>
             <div>
                 <i style="font-size:25px" class="fa-solid fa-cart-shopping"></i>
