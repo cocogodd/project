@@ -173,7 +173,7 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
                                     <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-thumb">
                                         <img src="./upload/<?php echo $product['image'] ?>" alt="">
                                     </a>
-                                    <a href="" class="buy-now">Buy Now</a>
+                                    
                                 </div>
                                 <div class="product-infor">
                                     <a href="categoryPage.php?category_id=<?php echo $product['category_id'] ?>" class="product-cart"> <?= $product['menu_name'] ?></a><br>
@@ -218,7 +218,7 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
                                     <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-thumb">
                                         <img src="./upload/<?php echo $product['image'] ?>" alt="">
                                     </a>
-                                    <a href="" class="buy-now">Buy Now</a>
+                                    
                                 </div>
                                 <div class="product-infor">
                                     <a href="categoryPage.php?category_id=<?php echo $product['category_id'] ?>" class="product-cart"> <?= $product['menu_name'] ?></a><br>
