@@ -11,13 +11,13 @@ if (!function_exists('connect')) {
         }
         return $conn;
     }
+    
 }
 
 $conn = connect(); ?>
 <?php
-$new_arrival_total_record = $conn->query('SELECT count(id) as total from product
-    --   WHERE ...
-    ')->fetch_row()[0];
+$new_arrival_total_record = $conn->query("SELECT count(id) as total from product
+    ")->fetch_row()[0];
 $new_arrival_current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $limit = 15;
 $new_arrival_total_page = ceil($new_arrival_total_record / $limit);
@@ -32,14 +32,12 @@ $newArrival = $conn->query("SELECT product.*,categories.menu_name,categories.id 
       join categories_type on categories_type.id=product.categories_type_id
       join categories on categories.id=categories_type.Categories_id 
       LIMIT $new_arrival_start, $limit
-    --   WHERE ...
       ");
 ?>
 
 <?php
 $best_seller_total_record = $conn->query(
     'SELECT count(id) as total from product
-    --   WHERE ...
     ')
     ->fetch_row()[0];
 $best_seller_current_page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -55,7 +53,6 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
       join categories_type on categories_type.id=product.categories_type_id
       join categories on categories.id=categories_type.Categories_id 
         LIMIT $best_seller_start, $limit
-        --   WHERE ...
         ");
 ?>
 
@@ -165,12 +162,12 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="new-arrival" role="tabpanel" aria-labelledby="new-arrival-tab">
-                <ul class="product">
+                <div class="row product">
                     <?php foreach ($newArrival as $product) : ?>
-                        <li>
+                        <div class="col col-lg-5 col-md-4 col-sm-6" >
                             <div class="product-item">
                                 <div class="product-top">
-                                    <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-thumb">
+                                    <a href="productDetail.php?id=<?php echo $product['id'] ?>" >
                                         <img src="./upload/<?php echo $product['image'] ?>" alt="">
                                     </a>
                                     
@@ -181,9 +178,9 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
                                     <div class="product-price">$<?= $product['price'] ?></div>
                                 </div>
                             </div>
-                        </li>
+                        </div>
                     <?php endforeach; ?>
-                </ul>
+                </div>
                 <nav aria-label="...">
                     <ul class="pagination justify-content-center">
                         <?php if ($new_arrival_current_page > 1 && $new_arrival_total_page > 1) { ?>
@@ -210,12 +207,12 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
                 </nav>
             </div>
             <div class="tab-pane fade" id="best-seller" role="tabpanel" aria-labelledby="best-seller-tab">
-                <ul class="product">
+                <ul class="row product">
                     <?php foreach ($bestSeller as $product) : ?>
-                        <li>
+                        <div class="col col-lg-5 col-md-4 col-sm-6" >
                             <div class="product-item">
                                 <div class="product-top">
-                                    <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-thumb">
+                                    <a href="productDetail.php?id=<?php echo $product['id'] ?>" >
                                         <img src="./upload/<?php echo $product['image'] ?>" alt="">
                                     </a>
                                     
@@ -226,7 +223,7 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
                                     <div class="product-price">$<?= $product['price'] ?></div>
                                 </div>
                             </div>
-                        </li>
+                        </div>
                     <?php endforeach; ?>
                 </ul>
                 <nav aria-label="...">
