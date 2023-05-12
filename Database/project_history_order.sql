@@ -34,15 +34,6 @@ CREATE TABLE `history_order` (
   CONSTRAINT `fk_history_order_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ucs2;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `history_order`
---
-
-LOCK TABLES `history_order` WRITE;
-/*!40000 ALTER TABLE `history_order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `history_order` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -53,4 +44,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-25 20:20:45
+-- Dump completed on 2023-05-12 23:38:17

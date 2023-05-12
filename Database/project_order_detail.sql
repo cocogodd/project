@@ -25,24 +25,15 @@ DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE `order_detail` (
   `id` int NOT NULL AUTO_INCREMENT,
   `order_detail_name` varchar(1000) DEFAULT NULL,
-  `price` decimal(60,0) DEFAULT NULL,
+  `price` varchar(1000) DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   `order_id` int NOT NULL,
   `image` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_order_detail_order1_idx` (`order_id`),
   CONSTRAINT `fk_order_detail_order1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=ucs2;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ucs2;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `order_detail`
---
-
-LOCK TABLES `order_detail` WRITE;
-/*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -53,4 +44,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-25 20:20:45
+-- Dump completed on 2023-05-12 23:38:18
