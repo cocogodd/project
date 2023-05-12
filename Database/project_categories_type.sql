@@ -31,16 +31,6 @@ CREATE TABLE `categories_type` (
   CONSTRAINT `fk_categories_type_Categories1` FOREIGN KEY (`Categories_id`) REFERENCES `categories` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=ucs2;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `categories_type`
---
-
-LOCK TABLES `categories_type` WRITE;
-/*!40000 ALTER TABLE `categories_type` DISABLE KEYS */;
-INSERT INTO `categories_type` VALUES (1,'Cooking pots',1),(2,'Cooking Pans',1),(3,'Frying Pans',1),(4,'Cookware Sets',1),(5,'Handis',1),(6,'Kadais [Karahi]',1),(7,'Grill pans',1),(8,'Tawas',1),(9,'Egg Poachers',1),(10,'Steamers',1),(11,'Freezers',2),(12,'Refrigerators',2),(13,'Blenders',3),(14,'Bread Makers',3),(15,'Coffee Makers',3),(16,'Ice-Cream and sorbet makers',3),(17,'Electric Kettles',3),(18,'Food Choppers',3),(19,'Toasters',3),(20,'Flask',4),(21,'Spice Jars',4),(22,'Storage Bags',4),(23,'Lunch Boxes',4),(24,'Vacuum bottles',4);
-/*!40000 ALTER TABLE `categories_type` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -51,4 +41,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-25 20:20:44
+-- Dump completed on 2023-05-12 23:38:17

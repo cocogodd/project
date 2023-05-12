@@ -25,26 +25,24 @@ DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `price` varchar(1000) DEFAULT NULL,
+  `price` decimal(10,0) NOT NULL,
   `image` varchar(1000) DEFAULT NULL,
-  `categories_type` int NOT NULL,
+  `quantity` int NOT NULL,
+  `description` varchar(10000) NOT NULL,
+  `discount` varchar(45) NOT NULL,
+  `made_in` int NOT NULL,
+  `categories_type_id` int NOT NULL,
   `user_id` int NOT NULL,
+  `create_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `product_id_idx` (`categories_type`),
+  KEY `product_id_idx` (`categories_type_id`),
   KEY `fk_product_user1_idx` (`user_id`),
+  KEY `nation_id_idx` (`made_in`),
   CONSTRAINT `fk_product_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `product_id` FOREIGN KEY (`categories_type`) REFERENCES `categories_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=ucs2;
+  CONSTRAINT `nation_id` FOREIGN KEY (`made_in`) REFERENCES `nation` (`id`),
+  CONSTRAINT `product_id` FOREIGN KEY (`categories_type_id`) REFERENCES `categories_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=ucs2;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `product`
---
-
-LOCK TABLES `product` WRITE;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-25 20:20:45
+-- Dump completed on 2023-05-12 23:38:17
