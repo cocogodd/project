@@ -49,9 +49,9 @@
                 <?php } 
                 else{?>
                 
-                <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="sign_up.php">Sign up</a>
+                <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_up.php">Sign up</a>
                 <div class="navbar__link-separator"></div>
-                <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="sign_in.php">Sign in</a>
+                <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_in.php">Sign in</a>
                 <?php }?>
             </div>
         </div>
