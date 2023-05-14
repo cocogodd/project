@@ -35,6 +35,16 @@ CREATE TABLE `order` (
   CONSTRAINT `fk_order_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ucs2;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order`
+--
+
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES (1,'200000đ',1,'6/5/2023','Haanh',1,'pot1.jpg');
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -45,4 +55,4 @@ CREATE TABLE `order` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-12 23:38:17
+-- Dump completed on 2023-05-14 12:55:20

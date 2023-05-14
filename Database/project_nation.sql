@@ -28,6 +28,16 @@ CREATE TABLE `nation` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ucs2;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nation`
+--
+
+LOCK TABLES `nation` WRITE;
+/*!40000 ALTER TABLE `nation` DISABLE KEYS */;
+INSERT INTO `nation` VALUES (1,'Vietnam'),(2,'Japanese'),(3,'India'),(4,'America'),(5,'China'),(6,'United Kingdom'),(7,'Philippines'),(8,'Russia'),(9,'Germany'),(10,'Campuchia');
+/*!40000 ALTER TABLE `nation` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -38,4 +48,4 @@ CREATE TABLE `nation` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-12 23:38:17
+-- Dump completed on 2023-05-14 12:55:21
