@@ -45,9 +45,7 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
         LIMIT $best_seller_start, $limit
         ");
 ?>
-    <style>
-    
-
+<style>
     #wrapper {
         display: flex;
     }
@@ -61,7 +59,7 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
 
     }
 
-    
+
 
     #price {
         color: #F75813;
@@ -81,7 +79,9 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
         width: 200px;
         height: 50px;
     }
-
+    #submit1:hover a{
+        color: #F75813;
+    }
     #free {
         font-size: 110%;
     }
@@ -90,26 +90,32 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
         width: 200px;
         height: 35px;
     }
-    </style>
+</style>
 </head>
 
 <body>
-    <?php 
-        $conn = new mysqli('localhost', 'root', '12345678', 'project');
-        if ($conn->connect_error) {
-            die("ket noi that bai" . $conn->connect_error);
-        }
-    
-    function close($stmt,$conn){
+    <?php
+    $conn = new mysqli('localhost', 'root', '12345678', 'project');
+    if ($conn->connect_error) {
+        die("ket noi that bai" . $conn->connect_error);
+    }
+
+    function close($stmt, $conn)
+    {
         $stmt->close();
         $conn->close();
     }
     $id = $_GET['id'];
     $result = mysqli_query($conn, "SELECT * FROM product WHERE id = $id ");
     $product = mysqli_fetch_assoc($result);
-    
-    
-    
+
+    $user;
+    if (isset($_SESSION['user'])) {
+        $user = $_SESSION['user'];
+    } else {
+        $user = null;
+    }
+
     ?>
     <div id="wrapper">
         <div>
@@ -129,13 +135,23 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
                             <input type="text" name="img" value="<?php echo $product['image']; ?>" hidden>
                             <input type="text" name="name" value="<?php echo $product['name']; ?>" hidden>
                             <input type="number" name="price" value="<?php echo $product['price']; ?>" hidden>
-                            <!-- Code mới phần quantity 1 --><input type="button" name="minus" onclick="Decrease();"
-                                value="-"><span><input type="number" name="quantity" id="quantity" value="1"
-                                    readonly><input type="button" name="plus" onclick="Increase();" value="+"></span>
+                            <!-- Code mới phần quantity 1 --><input type="button" name="minus" onclick="Decrease();" value="-"><span><input type="number" name="quantity" id="quantity" value="1" readonly><input type="button" name="plus" onclick="Increase();" value="+"></span>
+                            <?php if ($user) { ?>
+                                <input type="submit" name="add" id="submit1" class="btn btn-outline-warning" value="Add To Cart">
+                            <?php } else { ?>
+                                <button id="submit1" class="btn btn-outline-warning" >
+                                    <a href="login/sign_in.php">Add To Cart</a>
+                                </button>
+                            <?php } ?>
 
-                            <input type="submit" name="add" id="submit1" value="Thêm Vào Giỏ Hàng"
-                                class="btn btn-outline-warning">
-                            <input type="submit" name="submit" id="submit" value="Mua Ngay" class="btn">
+                            <?php if ($user) { ?>
+                                <input type="submit" name="submit" id="submit" value="Buy Now" class="btn">
+                            <?php } else { ?>
+                                <button id="submit" class="btn">
+                                    <a style="color: #fff" href="login/sign_in.php">Buy Now</a>
+                                </button>
+                            <?php } ?>
+                            
                         </div> <br>
                         <div class="form-gruop">
                             <h3>Product Detail</h3>
@@ -145,7 +161,7 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
 
                         </div>
                         <div class="form-gruop">
-                            <label for="">Xuất Xứ: <?php echo $product['made_in'] ?></label>
+                            <label for="">Origin: <?php echo $product['made_in'] ?></label>
                         </div>
                         <div class="form-gruop">
                             <label for=""><?php echo $product['create_date'] ?></label>
@@ -154,103 +170,93 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
 
                     <!-- Code mới phần quantity 2 -->
                     <script>
-                    var quantity = document.getElementById("quantity");
-                    var amount = quantity.value;
+                        var quantity = document.getElementById("quantity");
+                        var amount = quantity.value;
 
-                    function Increase() {
-                        amount++;
-                        quantity.value = amount;
-                    }
-
-                    function Decrease() {
-                        if (amount > 1) {
-                            amount--;
+                        function Increase() {
+                            amount++;
+                            quantity.value = amount;
                         }
-                        quantity.value = amount;
-                    }
+
+                        function Decrease() {
+                            if (amount > 1) {
+                                amount--;
+                            }
+                            quantity.value = amount;
+                        }
                     </script>
                     <!-- Hết -->
                     <?php
-                        
-                        if (isset($_POST['add']))
-                        {
-                            $temp = 0;
-                            if (isset($_SESSION['cart']))
-                            {
-                                for ($i = 0; $i < sizeof($_SESSION['cart']); $i++)
-                                {
-                                    if ($_SESSION['cart'][$i]["id"] == $_POST['id'])
-                                    {
-                                        $_SESSION['cart'][$i]["quantity"] += 1;
-                                        $_SESSION['cart'][$i]["price"] = $_POST['price'] * $_SESSION['cart'][$i]["quantity"];
-                                        $temp = 1;
-                                        break;
-                                    }
+
+                    if (isset($_POST['add'])) {
+                        $temp = 0;
+                        if (isset($_SESSION['cart'])) {
+                            for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+                                if ($_SESSION['cart'][$i]["id"] == $_POST['id']) {
+                                    $_SESSION['cart'][$i]["quantity"] += 1;
+                                    $_SESSION['cart'][$i]["price"] = $_POST['price'] * $_SESSION['cart'][$i]["quantity"];
+                                    $temp = 1;
+                                    break;
                                 }
                             }
-                            if ($temp == 0)
-                            {
-                                $_SESSION['cart'][] = array(
-                                    "id" => $_POST['id'],
-                                    "name" => $_POST['name'],
-                                    "img" => $_POST['img'],
-                                    "quantity" => $_POST['quantity'],
-                                    "price" => $_POST['price'] * $_POST['quantity']);
-                            }
                         }
+                        if ($temp == 0) {
+                            $_SESSION['cart'][] = array(
+                                "id" => $_POST['id'],
+                                "name" => $_POST['name'],
+                                "img" => $_POST['img'],
+                                "quantity" => $_POST['quantity'],
+                                "price" => $_POST['price'] * $_POST['quantity']
+                            );
+                        }
+                    }
                     ?>
                 </div>
             </div>
         </div>
     </div>
-    <p class="text-center text-uppercase ">Có Thể Bạn Cũng Thích</p> <br>
+    <p class="text-center text-uppercase ">You may also like</p> <br>
     <div class="container">
         <div class="row product ">
             <?php foreach ($bestSeller as $product) : ?>
-            <div class="col col-lg-5 col-md-4 col-sm-6">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="productDetail.php?id=<?php echo $product['id'] ?>">
-                            <img src="./upload/<?php echo $product['image'] ?>" alt="">
-                        </a>
+                <div class="col col-lg-5 col-md-4 col-sm-6">
+                    <div class="product-item">
+                        <div class="product-top">
+                            <a href="productDetail.php?id=<?php echo $product['id'] ?>">
+                                <img src="./upload/<?php echo $product['image'] ?>" alt="">
+                            </a>
 
-                    </div>
-                    <div class="product-infor">
-                        <a href="categoryPage.php?category_id=<?php echo $product['category_id'] ?>"
-                            class="product-cart">
-                            <?= $product['menu_name'] ?></a><br>
-                        <a href="productDetail.php?id=<?php echo $product['id'] ?>"
-                            class="product-name"><?= mysubstr($product['name'], 10) ?></a><br>
-                        <div class="product-price">$<?= $product['price'] ?></div>
+                        </div>
+                        <div class="product-infor">
+                            <a href="categoryPage.php?category_id=<?php echo $product['category_id'] ?>" class="product-cart">
+                                <?= $product['menu_name'] ?></a><br>
+                            <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-name"><?= mysubstr($product['name'], 10) ?></a><br>
+                            <div class="product-price">$<?= $product['price'] ?></div>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php endforeach; ?>
         </div>
         <nav aria-label="...">
             <ul class="pagination justify-content-center">
                 <?php if ($best_seller_current_page > 1 && $best_seller_total_page > 1) { ?>
-                <li class="page-item">
-                    <a class="page-link"
-                        href="productDetail.php?id=<?php echo $id ?>&page=<?php echo $best_seller_current_page - 1 ?>"
-                        tabindex="-1">Previous</a>
-                </li>
+                    <li class="page-item">
+                        <a class="page-link" href="productDetail.php?id=<?php echo $id ?>&page=<?php echo $best_seller_current_page - 1 ?>" tabindex="-1">Previous</a>
+                    </li>
                 <?php } ?>
                 <?php
-                        for ($i = 1; $i <= $best_seller_total_page; $i++) {
-                            if ($i == $best_seller_current_page) { ?>
-                <li class="page-item page-item active"><a class="page-link" href="#"><?php echo $i ?></a></li>
-                <?php } else { ?>
-                <li class="page-item "><a class="page-link"
-                        href="productDetail.php?id=<?php echo $id ?>&page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                for ($i = 1; $i <= $best_seller_total_page; $i++) {
+                    if ($i == $best_seller_current_page) { ?>
+                        <li class="page-item page-item active"><a class="page-link" href="#"><?php echo $i ?></a></li>
+                    <?php } else { ?>
+                        <li class="page-item "><a class="page-link" href="productDetail.php?id=<?php echo $id ?>&page=<?php echo $i ?>"><?php echo $i ?></a></li>
                 <?php }
-                        } ?>
+                } ?>
 
                 <?php if ($best_seller_current_page < $best_seller_total_page && $best_seller_total_page > 1) { ?>
-                <li class="page-item">
-                    <a class="page-link"
-                        href="productDetail.php?id=<?php echo $id ?>&page=<?php echo $best_seller_current_page + 1 ?>">Next</a>
-                </li>
+                    <li class="page-item">
+                        <a class="page-link" href="productDetail.php?id=<?php echo $id ?>&page=<?php echo $best_seller_current_page + 1 ?>">Next</a>
+                    </li>
                 <?php } ?>
 
             </ul>
@@ -259,6 +265,6 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
 
 
 
-<?php
-include('footer.php');
-?>
+    <?php
+    include('footer.php');
+    ?>
