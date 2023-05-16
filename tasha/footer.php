@@ -7,23 +7,23 @@
           <p class="mb-0">1-800-234-9000</p>
           <p class="mb-0">tasha@yourcompany.com</p>
         </div>
-        <div class="mt-2">
+        <div class="mt-2 contact-footer">
           <a class="p-2" href="https://www.facebook.com/profile.php?id=100049345187328"><i class="fa-brands fa-facebook"></i></a>
           <a class="p-2" href="https://www.instagram.com/quocuong__/"><i class="fa-brands fa-instagram"></i></a>
           <a class="p-2" href="https://www.youtube.com/channel/UCUQuQqsoq9h440BXNKOw1rQ"><i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
       <div class="col-2 d-flex flex-column ">
-        <h5 class=" mb-3">Support center</h5>
-      <a class="text-white mb-3"href="">Manuals</a>
-      <a class="text-white mb-3"href=""> Expert Tips</a>
-      <a class="text-white mb-3"href="">Register Complain</a>
-      <a class="text-white mb-3"href="">Feedback</a>
+        <h5 class=" mb-3">Help center</h5>
+        <a class="text-white mb-3" href="manuals.php">Manuals</a>
+        <a class="text-white mb-3" href=""> Expert Tips</a>
+        <a class="text-white mb-3" href="feedBack.php">Register Complain & Feedback</a>
+        <a class="text-white mb-3" href="contact.php">Contact</a>
       </div>
       <div class="col-7">
         <div class="row">
           <div class="col-3">
-          <h5 class=" mb-3">Address</h5>
+            <h5 class=" mb-3">Address</h5>
             <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
               <a class="nav-link active" id="trieu-khuc-tab" data-toggle="pill" href="#trieu-khuc" role="tab" aria-controls="v-pills-home" aria-selected="true">Triều Khúc</a>
               <a class="nav-link" id="le-thanh-nghi-tab" data-toggle="pill" href="#le-thanh-nghi" role="tab" aria-controls="v-pills-profile" aria-selected="false">54 Lê Thanh Nghị</a>
@@ -51,17 +51,28 @@
       </div>
     </div>
   </div>
+  <div class="scroll-top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </div>
 </footer>
-<script>
-  const banner = document.getElementById('bannerHome')
-  banner.carousel({
-    interval: 100
-  })
-</script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+  $(window).scroll(function () {
+		if ($(this).scrollTop() > 300) {
+			$('.scroll-top').fadeIn();
+		} else {
+			$('.scroll-top').fadeOut();
+		}
+	});
+  $(".scroll-top").click(function() {
+    $("html, body").animate ({scrollTop: 0});
+  });
+  $("#bannerHome").carousel({
+    interval: 3000
+  })
+</script>
 </body>
 
 </html>

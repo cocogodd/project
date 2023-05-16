@@ -3,12 +3,13 @@
     max-width: 1200px;
 }
 .form-search{
-    width: 70%;
     color: #555;
     display: flex;
     padding: 2px;
     border: 1px solid currentColor;
     border-radius: 5px;
+    margin-right: 10px;
+    width: 50%;
 }
 .form-search input{
     padding: 10px 5px;
@@ -20,6 +21,7 @@
   color: inherit;
   border: none;
   border: 1px solid transparent;
+  
 }
 .form-search button{
   text-indent: -999px;
@@ -92,13 +94,10 @@ font-size: 25px;
 
 .navbar-expand-lg .navbar-nav .nav-link{
     color: black;
-    padding-right: 2rem;
+    padding: 8px 3rem;
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 600;
-}
-.navbar-expand-lg .navbar-nav .nav-link:after{
-    display: none;
 }
 header hr{
     margin: 0;
@@ -247,4 +246,32 @@ color: #030303;
   color: #fff;
   font-size: 15px;
   cursor: pointer;
+}
+
+.scroll-top {
+  background-color: rgba(0, 0, 0, 0.3);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 50px;
+  right: 35px;
+  border-radius: 100%;
+}
+.scroll-top i{
+transition: 0.3s;
+font-size:20px
+}
+.scroll-top:hover{
+  background-color: rgba(247, 88, 19, 0.7);
+}
+.scroll-top:hover i{
+  margin-bottom: 10px;
+}
+.badge-bg{
+  background: #F75813;
+  color: #fff;
 }

@@ -37,7 +37,7 @@ if (isset($_GET['search'])) {
      where product.name like '%$name_search%'
      LIMIT $search_page_start, $limit");
 ?>
-    <div class="container mt-4 mb-4">
+    <div class="container mt-4 mb-4 pb-4 pt-4">
         <div class="row product">
             <?php
             if ($products) { ?>
