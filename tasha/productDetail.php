@@ -1,6 +1,50 @@
 <?php
 include('header.php');
 ?>
+<?php
+function mysubstr($str, $limit = 100)
+{
+    if (strlen($str) <= $limit) return $str;
+    return mb_substr($str, 0, $limit - 3, 'UTF-8') . '...';
+}
+?>
+<?php
+if (!function_exists('connect')) {
+    function connect()
+    {
+        $conn = new mysqli('localhost:3306', 'root', '12345678', 'project');
+        if ($conn->connect_error) {
+            die('Kết nối thất bại' . $conn->connect_error);
+        }
+        return $conn;
+    }
+}
+
+$conn = connect(); ?>
+<?php
+$limit = 10;
+$best_seller_total_record = $conn->query(
+    'SELECT count(id) as total from product
+    where product.discount >= 20
+    '
+)
+    ->fetch_row()[0];
+$best_seller_current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+$best_seller_total_page = ceil($best_seller_total_record / $limit);
+
+if ($best_seller_current_page > $best_seller_total_page) {
+    $best_seller_current_page = $best_seller_total_page;
+} else if ($best_seller_current_page < 1) {
+    $best_seller_current_page = 1;
+}
+$best_seller_start = ($best_seller_current_page - 1) * $limit;
+$bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id as category_id from product
+      join categories_type on categories_type.id=product.categories_type_id
+      join categories on categories.id=categories_type.Categories_id 
+      where product.discount >= 20
+        LIMIT $best_seller_start, $limit
+        ");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,25 +55,25 @@ include('header.php');
     <title>product_details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="https://fontawesome.com/icons/truck-fast?f=sharp&s=regular">
+    <link rel="stylesheet" href="https://fontawesome.com/icons/truck-fast?f=sharp&s=regular">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <style>
-        .col {
-            border: solid black 1px;
-        }
+    
+
     #wrapper {
         display: flex;
     }
+
     #img {
         margin-top: 10%;
         margin-left: 40%;
         width: 500px;
-        height: 400px; 
-        margin-bottom: 30%;     
+        height: 400px;
+        margin-bottom: 30%;
 
     }
-    .container {
-        margin-left: 60px;
-    }
+
+    
 
     #price {
         color: #F75813;
@@ -42,20 +86,22 @@ include('header.php');
         width: 200px;
         height: 50px;
     }
+
     #submit1 {
         color: #F75813;
         background: #FFEEE8;
         width: 200px;
         height: 50px;
     }
+
     #free {
         font-size: 110%;
     }
+
     #quantity {
         width: 200px;
         height: 35px;
     }
-    
     </style>
 </head>
 
@@ -71,42 +117,44 @@ include('header.php');
         $conn->close();
     }
     $id = $_GET['id'];
-     $result = mysqli_query($conn, "SELECT * FROM product WHERE id = $id ");
+    $result = mysqli_query($conn, "SELECT * FROM product WHERE id = $id ");
     $product = mysqli_fetch_assoc($result);
     
     
     
     ?>
     <div id="wrapper">
-        <div >
-            <img id="img" src="./img/<?php echo $product['image'] ?>" alt="Nồi chống dính"> <br>
+        <div>
+            <img id="img" src="./upload/<?php echo $product['image'] ?>" alt="Nồi chống dính"> <br>
         </div>
         <div class="container p-4 ">
             <div class="row justify-content-around ">
                 <div class="col-md-6">
                     <form action="" method="post">
-                        <h1><?php echo $product['name'] ?></h1> 
+                        <h1><?php echo $product['name'] ?></h1>
                         <div class="form-gruop" id="price">
                             <label for="price"> <?php echo $product['price'] ?> VND</label>
-                        </div> 
-                         <br>
+                        </div>
+                        <br>
                         <div class="form-gruop">
                             <input type="number" name="id" value="<?php echo $product['id']; ?>" hidden>
                             <input type="text" name="img" value="<?php echo $product['image']; ?>" hidden>
                             <input type="text" name="name" value="<?php echo $product['name']; ?>" hidden>
                             <input type="number" name="price" value="<?php echo $product['price']; ?>" hidden>
- <!-- Code mới phần quantity 1 --><input type="button" name="minus" onclick="Decrease();" value="-"><span><input type="number" name="quantity" id="quantity" value = "1" readonly><input type="button" name="plus" onclick="Increase();" value="+"></span>
-                            
+                            <!-- Code mới phần quantity 1 --><input type="button" name="minus" onclick="Decrease();"
+                                value="-"><span><input type="number" name="quantity" id="quantity" value="1"
+                                    readonly><input type="button" name="plus" onclick="Increase();" value="+"></span>
+
                             <input type="submit" name="add" id="submit1" value="Thêm Vào Giỏ Hàng"
                                 class="btn btn-outline-warning">
                             <input type="submit" name="submit" id="submit" value="Mua Ngay" class="btn">
                         </div> <br>
                         <div class="form-gruop">
-                            <h3>Product Detail</h3> 
-                        <label><?php echo $product['description'] ?> <br>
-                                </label>
-                            
-                            
+                            <h3>Product Detail</h3>
+                            <label><?php echo $product['description'] ?> <br>
+                            </label>
+
+
                         </div>
                         <div class="form-gruop">
                             <label for="">Xuất Xứ: <?php echo $product['made_in'] ?></label>
@@ -118,23 +166,20 @@ include('header.php');
 
                     <!-- Code mới phần quantity 2 -->
                     <script>
-                        var quantity = document.getElementById("quantity");
-                        var amount = quantity.value;
+                    var quantity = document.getElementById("quantity");
+                    var amount = quantity.value;
 
-                        function Increase()
-                        {
-                            amount++;
-                            quantity.value = amount;
-                        }
+                    function Increase() {
+                        amount++;
+                        quantity.value = amount;
+                    }
 
-                        function Decrease()
-                        {
-                            if (amount > 1)
-                            {
-                                amount--;
-                            }
-                            quantity.value = amount;
+                    function Decrease() {
+                        if (amount > 1) {
+                            amount--;
                         }
+                        quantity.value = amount;
+                    }
                     </script>
                     <!-- Hết -->
                     <?php
@@ -170,50 +215,59 @@ include('header.php');
             </div>
         </div>
     </div>
-    <!--<p class="text-center text-uppercase ">Có Thể Bạn Cũng Thích</p> <br>
-    <div class="product-restaurants">
-        <div class="row">
-        <?php
-            $sql = 'SELECT * from product,product_detail where  product.id=product_detail.product_id';
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-            
-              echo '
-                                <div class="col">
-                                    <a href="productDetail.php?id=' . $row['id'] . '">
-                                        <img class="thumbnail" src="./img/cookware/' . $row['image'] . '" alt="">
-                                        <table>
-                                        <tr rowspan="2">
-                                        <div class="title">
-                                            <p class ="title2">' . $row['name'] . '</p>
-                                        </div>
-                                        </tr>
-                                        <tr>
-                                        <div class="price">
-                                            <span>' . $row['price'] . ' VNĐ</span>
-                                        </div>
-                                        </tr>
-                                        
-                                        </table>
-                                    </a>
-                                </div>
-                                ';
-            }
-        }
-    
+    <p class="text-center text-uppercase ">Có Thể Bạn Cũng Thích</p> <br>
+    <div class="container">
+        <div class="row product ">
+            <?php foreach ($bestSeller as $product) : ?>
+            <div class="col col-lg-5 col-md-4 col-sm-6">
+                <div class="product-item">
+                    <div class="product-top">
+                        <a href="productDetail.php?id=<?php echo $product['id'] ?>">
+                            <img src="./upload/<?php echo $product['image'] ?>" alt="">
+                        </a>
 
-            ?>
-
+                    </div>
+                    <div class="product-infor">
+                        <a href="categoryPage.php?category_id=<?php echo $product['category_id'] ?>"
+                            class="product-cart">
+                            <?= $product['menu_name'] ?></a><br>
+                        <a href="productDetail.php?id=<?php echo $product['id'] ?>"
+                            class="product-name"><?= mysubstr($product['name'], 10) ?></a><br>
+                        <div class="product-price">$<?= $product['price'] ?></div>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
         </div>
-    </div> -->
-    <style>
-        .thumnail {
-            width: 100px;
-            height: 100px;
-        }
-    </style>
+        <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+                <?php if ($best_seller_current_page > 1 && $best_seller_total_page > 1) { ?>
+                <li class="page-item">
+                    <a class="page-link"
+                        href="productDetail.php?id=<?php echo $id ?>&page=<?php echo $best_seller_current_page - 1 ?>"
+                        tabindex="-1">Previous</a>
+                </li>
+                <?php } ?>
+                <?php
+                        for ($i = 1; $i <= $best_seller_total_page; $i++) {
+                            if ($i == $best_seller_current_page) { ?>
+                <li class="page-item page-item active"><a class="page-link" href="#"><?php echo $i ?></a></li>
+                <?php } else { ?>
+                <li class="page-item "><a class="page-link"
+                        href="productDetail.php?id=<?php echo $id ?>&page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php }
+                        } ?>
 
+                <?php if ($best_seller_current_page < $best_seller_total_page && $best_seller_total_page > 1) { ?>
+                <li class="page-item">
+                    <a class="page-link"
+                        href="productDetail.php?id=<?php echo $id ?>&page=<?php echo $best_seller_current_page + 1 ?>">Next</a>
+                </li>
+                <?php } ?>
+
+            </ul>
+        </nav>
+    </div>
 </body>
 
 </html>

@@ -166,7 +166,7 @@ footer iframe{
   h3 {
     font-size: 18px;
     padding: 10px 20px;
-    border: 1px solid black;
+     border: 1px solid black; 
     display: inline-block;
   }
   .product .col{
