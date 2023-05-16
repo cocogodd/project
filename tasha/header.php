@@ -44,7 +44,7 @@
                 </form>
                 <div class="d-flex align-items-center">
                     <div style="margin-right: 60px;">
-                    <a href="" >
+                    <a href="cart.php" >
                             <i style="font-size:25px" class="fa-solid fa-cart-shopping"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-bg">
                             <?php
