@@ -61,17 +61,17 @@ include('header.php');
 
 <body>
     <?php 
-        $conn = new mysqli('localhost:3306','root','12345678','project');
-    if($conn->connect_error) {
-        die("ket noi that bai" .$conn->connect_error);
-    }
+        $conn = new mysqli('localhost:3307', 'root', 'Tranha350', 'project');
+        if ($conn->connect_error) {
+            die("ket noi that bai" . $conn->connect_error);
+        }
     
     function close($stmt,$conn){
         $stmt->close();
         $conn->close();
     }
     $id = $_GET['id'];
-     $result = mysqli_query($conn, "SELECT * FROM product_detail WHERE id = $id ");
+     $result = mysqli_query($conn, "SELECT * FROM product WHERE id = $id ");
     $product = mysqli_fetch_assoc($result);
     
     
@@ -79,48 +79,98 @@ include('header.php');
     ?>
     <div id="wrapper">
         <div >
-            <img id="img" src="./img/cookware/<?php echo $product['image'] ?>" alt="Nồi chống dính"> <br>
+            <img id="img" src="./img/<?php echo $product['image'] ?>" alt="Nồi chống dính"> <br>
         </div>
         <div class="container p-4 ">
             <div class="row justify-content-around ">
                 <div class="col-md-6">
                     <form action="" method="post">
-                        <h1><?php echo $product['product_name'] ?></h1> 
+                        <h1><?php echo $product['name'] ?></h1> 
                         <div class="form-gruop" id="price">
                             <label for="price"> <?php echo $product['price'] ?> VND</label>
                         </div> 
-                        <div class="form-gruop" id="free">
-                            <label >Vận chuyển: Miễn Phí Vận chuyển</label>    
-                        </div>
-                        
+                         <br>
                         <div class="form-gruop">
-                            <label for="quantity" id="free">Số Lượng:</label> <br>
-                            <input type="number" name="quantity" value="" min="1" id="quantity">
-                        </div> <br>
-                        <div class="form-gruop">
-                            <input type="submit" name="submit" id="submit1" value="Thêm Vào Giỏ Hàng"
+                            <input type="number" name="id" value="<?php echo $product['id']; ?>" hidden>
+                            <input type="text" name="img" value="<?php echo $product['image']; ?>" hidden>
+                            <input type="text" name="name" value="<?php echo $product['name']; ?>" hidden>
+                            <input type="number" name="price" value="<?php echo $product['price']; ?>" hidden>
+ <!-- Code mới phần quantity 1 --><input type="button" name="minus" onclick="Decrease();" value="-"><span><input type="number" name="quantity" id="quantity" value = "1" readonly><input type="button" name="plus" onclick="Increase();" value="+"></span>
+                            
+                            <input type="submit" name="add" id="submit1" value="Thêm Vào Giỏ Hàng"
                                 class="btn btn-outline-warning">
                             <input type="submit" name="submit" id="submit" value="Mua Ngay" class="btn">
                         </div> <br>
                         <div class="form-gruop">
                             <h3>Product Detail</h3> 
                         <label><?php echo $product['description'] ?> <br>
-                                <?php echo $product['description'] ?> </label>
+                                </label>
                             
                             
                         </div>
                         <div class="form-gruop">
-                            <label for="">Xuất Xứ: <?php echo $product['create_by'] ?></label>
+                            <label for="">Xuất Xứ: <?php echo $product['made_in'] ?></label>
                         </div>
                         <div class="form-gruop">
                             <label for=""><?php echo $product['create_date'] ?></label>
                         </div>
                     </form>
+
+                    <!-- Code mới phần quantity 2 -->
+                    <script>
+                        var quantity = document.getElementById("quantity");
+                        var amount = quantity.value;
+
+                        function Increase()
+                        {
+                            amount++;
+                            quantity.value = amount;
+                        }
+
+                        function Decrease()
+                        {
+                            if (amount > 1)
+                            {
+                                amount--;
+                            }
+                            quantity.value = amount;
+                        }
+                    </script>
+                    <!-- Hết -->
+                    <?php
+                        
+                        if (isset($_POST['add']))
+                        {
+                            $temp = 0;
+                            if (isset($_SESSION['cart']))
+                            {
+                                for ($i = 0; $i < sizeof($_SESSION['cart']); $i++)
+                                {
+                                    if ($_SESSION['cart'][$i]["id"] == $_POST['id'])
+                                    {
+                                        $_SESSION['cart'][$i]["quantity"] += 1;
+                                        $_SESSION['cart'][$i]["price"] = $_POST['price'] * $_SESSION['cart'][$i]["quantity"];
+                                        $temp = 1;
+                                        break;
+                                    }
+                                }
+                            }
+                            if ($temp == 0)
+                            {
+                                $_SESSION['cart'][] = array(
+                                    "id" => $_POST['id'],
+                                    "name" => $_POST['name'],
+                                    "img" => $_POST['img'],
+                                    "quantity" => $_POST['quantity'],
+                                    "price" => $_POST['price'] * $_POST['quantity']);
+                            }
+                        }
+                    ?>
                 </div>
             </div>
         </div>
     </div>
-    <p class="text-center text-uppercase ">Có Thể Bạn Cũng Thích</p> <br>
+    <!--<p class="text-center text-uppercase ">Có Thể Bạn Cũng Thích</p> <br>
     <div class="product-restaurants">
         <div class="row">
         <?php
@@ -156,7 +206,7 @@ include('header.php');
             ?>
 
         </div>
-    </div>
+    </div> -->
     <style>
         .thumnail {
             width: 100px;

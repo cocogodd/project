@@ -13,11 +13,11 @@
 </head>
 
 <body>
-    
+
     <?php
     function connect()
     {
-        $conn = new mysqli('localhost', 'root', '12345678', 'project');
+        $conn = new mysqli('localhost:3307', 'root', 'Tranha350', 'project');
         if ($conn->connect_error) {
             die('Kết nối thất bại' . $conn->connect_error);
         }
@@ -28,10 +28,10 @@
     $categories = $conn->query("SELECT id, menu_name from categories");
     $categories_type = $conn->query("SELECT id, category_name,Categories_id from categories_type");
     $user;
-    if(isset($_SESSION['user'])){
+    if (isset($_SESSION['user'])) {
         $user = $_SESSION['user'];
-    }else{
-       $user=null ;
+    } else {
+        $user = null;
     }
     ?>
     <header>
@@ -46,13 +46,12 @@
                             <a class="dropdown-item" href="sign_in.php">Logout</a>
                         </div>
                     </div>
-                <?php } 
-                else{?>
-                
-                <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_up.php">Sign up</a>
-                <div class="navbar__link-separator"></div>
-                <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_in.php">Sign in</a>
-                <?php }?>
+                <?php } else { ?>
+
+                    <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_up.php">Sign up</a>
+                    <div class="navbar__link-separator"></div>
+                    <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_in.php">Sign in</a>
+                <?php } ?>
             </div>
         </div>
         <div class="container  pb-2 d-flex justify-content-between align-items-center">
@@ -63,7 +62,14 @@
             </form>
             <div>
                 <i style="font-size:25px" class="fa-solid fa-cart-shopping"></i>
-                <span>Cart:2</span>
+                <a href="cart.php">Cart </a><span class="badges">
+                    <?php
+                    if (isset($_SESSION['cart'])) {
+                        echo sizeof($_SESSION['cart']);
+                    } else {
+                        echo '0';
+                    }
+                    ?></span>
             </div>
         </div>
         <hr>
