@@ -248,3 +248,11 @@ color: #030303;
   font-size: 15px;
   cursor: pointer;
 }
+
+span.badges {
+  background: #e44704;
+  padding: 1px 5px 1px 5px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: white;
+}
