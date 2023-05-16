@@ -44,16 +44,23 @@
                 </form>
                 <div class="d-flex align-items-center">
                     <div style="margin-right: 60px;">
-                    <a href="cart.php" >
+                        <a href="<?php
+                                    if ($user) {
+                                        echo 'cart.php';
+                                    } else {
+                                        echo 'login/sign_in.php';
+                                    }
+
+                                    ?>">
                             <i style="font-size:25px" class="fa-solid fa-cart-shopping"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-bg">
-                            <?php
-                            if (isset($_SESSION['cart'])) {
-                                echo sizeof($_SESSION['cart']);
-                            } else {
-                                echo '0';
-                            }
-                            ?>
+                                <?php
+                                if (isset($_SESSION['cart'])) {
+                                    echo sizeof($_SESSION['cart']);
+                                } else {
+                                    echo '0';
+                                }
+                                ?>
                             </span>
                         </a>
                     </div>
@@ -62,8 +69,7 @@
                             <span id="avatar" class="d-flex justify-content-center align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(substr($user, 0, 1)) ?></span>
 
                             <div class="dropdown-menu" aria-labelledby="avatar">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="sign_in.php">Logout</a>
+                                <a class="dropdown-item" href="login/sign_in.php">Logout</a>
                             </div>
                         </div>
                     <?php } else { ?>
@@ -71,8 +77,8 @@
                             <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_up.php">Sign up</a>
                             <div class="navbar__link-separator"></div>
                             <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_in.php">Sign in</a>
-                        <?php } ?>
                         </div>
+                    <?php } ?>
                 </div>
             </div>
             <hr>
