@@ -47,7 +47,7 @@
                         '<div class="row border-top border-bottom">
                                 <div class="row main align-items-center">
                                     <div class="col-2">
-                                    <img class="img-fluid" src="img /' . $_SESSION['cart'][$i]['img'] . '"></div>
+                                    <img class="img-fluid" src="./upload/' . $_SESSION['cart'][$i]['img'] . '"></div>
                                     <div class="col">
                                         <div class="row">' . $_SESSION['cart'][$i]['name'] . '</div>
                                     </div>
