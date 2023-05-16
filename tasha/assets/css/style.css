@@ -275,3 +275,10 @@ font-size:20px
   background: #F75813;
   color: #fff;
 }
+span.badges {
+  background: #e44704;
+  padding: 1px 5px 1px 5px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: white;
+}

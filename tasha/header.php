@@ -47,7 +47,13 @@
                     <a href="" >
                             <i style="font-size:25px" class="fa-solid fa-cart-shopping"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-bg">
-                                9
+                            <?php
+                            if (isset($_SESSION['cart'])) {
+                                echo sizeof($_SESSION['cart']);
+                            } else {
+                                echo '0';
+                            }
+                            ?>
                             </span>
                         </a>
                     </div>
