@@ -173,7 +173,7 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
     margin: 10px 0;
 }
 
-.btn-box input {
+.btn-box input, button{
     font-size: 18px;
     padding: 8px 25px;
     border: none;
@@ -292,6 +292,7 @@ h4 {
                         <!-- Code mới phần quantity 1 -->
                         <div class="buttons_added">
                             <input type="button" name="minus" onclick="Decrease();" value="-" class="minus is-form">
+
                             <input aria-label="quantity" class="input-qty" type="number" name="quantity" id="quantity"
                                 value="1" readonly>
                             <input class="plus is-form" type="button" name="plus" onclick="Increase();" value="+">
@@ -300,8 +301,20 @@ h4 {
                     </div>
                 </div>
                 <div class="btn-box">
-                    <input type="submit" name="add" id="submit1" value="Add To Cart">
-                    <input type="submit" name="submit" id="submit" value="Buy Now">
+                    <?php if ($user) { ?>
+                            <input type="submit" name="add" id="submit1" value="Add To Cart">
+                    <?php } else { ?>
+                    <button id="submit1">
+                        <a href="login/sign_in.php">Add To Cart</a>
+                    </button>
+                    <?php } ?>
+                    <?php if ($user) { ?>
+                            <input type="submit" name="submit" id="submit" value="Buy Now">
+                    <?php } else { ?>
+                    <button id="submit" >
+                        <a style="color: #fff" href="login/sign_in.php">Buy Now</a>
+                    </button>
+                    <?php } ?>
                 </div>
 
                 <div class="description">
