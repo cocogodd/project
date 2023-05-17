@@ -16,7 +16,7 @@
       <div class="col-2 d-flex flex-column ">
         <h5 class=" mb-3">Help center</h5>
         <a class="text-white mb-3" href="manuals.php">Manuals</a>
-        <a class="text-white mb-3" href=""> Expert Tips</a>
+        <a class="text-white mb-3" href="expert_Tip.php"> Expert Tips</a>
         <a class="text-white mb-3" href="feedBack.php">Register Complain & Feedback</a>
         <a class="text-white mb-3" href="contact.php">Contact</a>
       </div>
