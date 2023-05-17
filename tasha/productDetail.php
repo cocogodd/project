@@ -272,7 +272,7 @@ h4 {
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <div class="price">$<?php echo $product['price'] ?></div>
+                <div class="price"><?= $english_format_number= number_format($product['price']) ?> VND</div>
                 <div class="color">
                     <p>Color: </p>
                     <div class="pcolor">Green</div>
@@ -288,7 +288,7 @@ h4 {
                         <input type="number" name="id" value="<?php echo $product['id']; ?>" hidden>
                         <input type="text" name="img" value="<?php echo $product['image']; ?>" hidden>
                         <input type="text" name="name" value="<?php echo $product['name']; ?>" hidden>
-                        <input type="number" name="price" value="<?php echo $product['price']; ?>" hidden>
+                        <input type="number" name="price" value="<?php echo $english_format_number= number_format($product['price']); ?>" hidden>
                         <!-- Code mới phần quantity 1 -->
                         <div class="buttons_added">
                             <input type="button" name="minus" onclick="Decrease();" value="-" class="minus is-form">
