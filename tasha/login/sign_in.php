@@ -32,14 +32,15 @@ include("sign_in_be.php");
                             <h1>Login</h1>
 
                             <div class="input-field">
-                                <input type="text" class="input" name="name" id="name">
+                                <input type="text" class="input" name="name" id="name" placeholder="<?php echo isset($user) ? $user : ''; ?>" >
                                 <label for="name">Username</label>
                             </div>
                             <div class="input-field">
-                                <input type="password" class="input" name="password" id="password">
+                                <input type="password" class="input" name="password" id="password" placeholder=" <?php echo isset($pass) ? $pass : ''; ?>">
                                 <label for="password">Password</label>
                             </div>
-
+                             <br>
+                           
                             <div class="input-field">
                                 <input type="submit" class="submit" name="submit" id="submit" value="Sign In">
                             </div>
