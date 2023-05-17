@@ -17,7 +17,7 @@
         <h5 class=" mb-3">Help center</h5>
         <a class="text-white mb-3" href="manuals.php">Manuals</a>
         <a class="text-white mb-3" href="expert_Tip.php"> Expert Tips</a>
-        <a class="text-white mb-3" href="feedBack.php">Register Complain & Feedback</a>
+        <a class="text-white mb-3" href="feedBack.php">Complain & Feedback</a>
         <a class="text-white mb-3" href="contact.php">Contact</a>
       </div>
       <div class="col-7">
@@ -56,6 +56,7 @@
   </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script class="u-script" type="text/javascript" src="//capp.nicepage.com/1f407d6fb52f4835c71b9ab9ebace889f288567a/nicepage.js" defer=""></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
@@ -72,6 +73,19 @@
   $("#bannerHome").carousel({
     interval: 3000
   })
+
+document.addEventListener("DOMContentLoaded", function(){
+  window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        document.getElementById('sticky').classList.add('fixed-top');
+        navbar_height = document.querySelector('#sticky').offsetHeight;
+        document.body.style.paddingTop = navbar_height + 'px';
+      } else {
+        document.getElementById('sticky').classList.remove('fixed-top');
+        document.body.style.paddingTop = '0';
+      } 
+  });
+}); 
 </script>
 </body>
 
