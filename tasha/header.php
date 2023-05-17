@@ -34,53 +34,53 @@
         $user = null;
     }
     ?>
-    <header style="height:136px">
-        <div class="fixed-top bg-white">
-            <div class="container  pb-2 pt-2 d-flex justify-content-between align-items-center">
-                <a href="./homePage.php"><img src="./assets/images/logo.png" alt=""></a>
-                <form action="searchPage.php" method="get" class="form-search">
-                    <input type="search" name="search" placeholder="Search">
-                    <button type="submit">Search</button>
-                </form>
-                <div class="d-flex align-items-center">
-                    <div style="margin-right: 60px;">
-                        <a href="<?php
-                                    if ($user) {
-                                        echo 'cart.php';
-                                    } else {
-                                        echo 'login/sign_in.php';
-                                    }
-
-                                    ?>">
-                            <i style="font-size:25px" class="fa-solid fa-cart-shopping"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-bg">
-                                <?php
-                                if (isset($_SESSION['cart'])) {
-                                    echo sizeof($_SESSION['cart']);
+    <header class="bg-white">
+        <div class="container  pb-2 pt-2 d-flex justify-content-between align-items-center">
+            <a href="./homePage.php"><img src="./assets/images/logo.png" alt=""></a>
+            <form action="searchPage.php" method="get" class="form-search">
+                <input type="search" name="search" placeholder="Search">
+                <button type="submit">Search</button>
+            </form>
+            <div class="d-flex align-items-center">
+                <div style="margin-right: 60px;">
+                    <a href="<?php
+                                if ($user) {
+                                    echo 'cart.php';
                                 } else {
-                                    echo '0';
+                                    echo 'login/sign_in.php';
                                 }
-                                ?>
-                            </span>
-                        </a>
-                    </div>
-                    <?php if ($user) { ?>
-                        <div class="dropdown show">
-                            <span id="avatar" class="d-flex justify-content-center align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(substr($user, 0, 1)) ?></span>
 
-                            <div class="dropdown-menu" aria-labelledby="avatar">
-                                <a class="dropdown-item" href="login/sign_in.php">Logout</a>
-                            </div>
-                        </div>
-                    <?php } else { ?>
-                        <div class="d-flex align-items-center">
-                            <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_up.php">Sign up</a>
-                            <div class="navbar__link-separator"></div>
-                            <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_in.php">Sign in</a>
-                        </div>
-                    <?php } ?>
+                                ?>">
+                        <i style="font-size:25px" class="fa-solid fa-cart-shopping"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-bg">
+                            <?php
+                            if (isset($_SESSION['cart'])) {
+                                echo sizeof($_SESSION['cart']);
+                            } else {
+                                echo '0';
+                            }
+                            ?>
+                        </span>
+                    </a>
                 </div>
+                <?php if ($user) { ?>
+                    <div class="dropdown show">
+                        <span id="avatar" class="d-flex justify-content-center align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(substr($user, 0, 1)) ?></span>
+
+                        <div class="dropdown-menu" aria-labelledby="avatar">
+                            <a class="dropdown-item" href="login/sign_in.php">Logout</a>
+                        </div>
+                    </div>
+                <?php } else { ?>
+                    <div class="d-flex align-items-center">
+                        <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_up.php">Sign up</a>
+                        <div class="navbar__link-separator"></div>
+                        <a class="pt-1 pb-1 pr-2 pl-2 text-black font-weight-bold" href="login/sign_in.php">Sign in</a>
+                    </div>
+                <?php } ?>
             </div>
+        </div>
+        <div id="sticky" class="bg-white">
             <hr>
             <nav class="navbar navbar-expand-lg container p-0">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
