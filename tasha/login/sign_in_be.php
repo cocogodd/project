@@ -14,11 +14,10 @@
         if($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 if ($name != $row['name']) {
-
-                    echo '<script>alert("Khong tồn tại user này")</script>';
+                    $user = "Username does not exist";
                 } else if (!password_verify($_POST['password'], $row['password'])) {
 
-                    echo '<script>alert("Sai password")</script>';
+                    $pass = "You entered wrong password";
                 }
                 if ($name == $row['name'] && password_verify($_POST['password'], $row['password'])){
                     $_SESSION["user"] = $name;
