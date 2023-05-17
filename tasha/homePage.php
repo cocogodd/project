@@ -188,8 +188,8 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
                                     </div>
                                     <div class="product-infor">
                                         <a href="categoryPage.php?category_id=<?php echo $product['category_id'] ?>" class="product-cart"> <?= $product['menu_name'] ?></a><br>
-                                        <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-name"><?= mysubstr($product['name'], 10) ?></a><br>
-                                        <div class="product-price">$<?= $product['price'] ?></div>
+                                        <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-name"><?= mysubstr($product['name'], 23) ?></a><br>
+                                        <div class="product-price"><?= $english_format_number= number_format($product['price']) ?> VND</div>
                                     </div>
                                 </div>
                             </div>
@@ -236,8 +236,8 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
                                 </div>
                                 <div class="product-infor">
                                     <a href="categoryPage.php?category_id=<?php echo $product['category_id'] ?>" class="product-cart"> <?= $product['menu_name'] ?></a><br>
-                                    <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-name"><?= mysubstr($product['name'], 10) ?></a><br>
-                                    <div class="product-price">$<?= $product['price'] ?></div>
+                                    <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-name"><?= mysubstr($product['name'], 23) ?></a><br>
+                                    <div class="product-price"><?= $english_format_number= number_format($product['price']) ?> VND</div>
                                 </div>
                             </div>
                         </div>

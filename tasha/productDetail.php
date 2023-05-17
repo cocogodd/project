@@ -127,14 +127,14 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
                     <form action="" method="post">
                         <h1><?php echo $product['name'] ?></h1>
                         <div class="form-gruop" id="price">
-                            <label for="price"> <?php echo $product['price'] ?> VND</label>
+                            <label for="price"> <?php echo $english_format_number= number_format($product['price']) ?> VND</label>
                         </div>
                         <br>
                         <div class="form-gruop">
                             <input type="number" name="id" value="<?php echo $product['id']; ?>" hidden>
                             <input type="text" name="img" value="<?php echo $product['image']; ?>" hidden>
                             <input type="text" name="name" value="<?php echo $product['name']; ?>" hidden>
-                            <input type="number" name="price" value="<?php echo $product['price']; ?>" hidden>
+                            <input type="number" name="price" value="<?php echo $english_format_number= number_format($product['price']); ?> VND" hidden>
                             <!-- Code mới phần quantity 1 --><input type="button" name="minus" onclick="Decrease();" value="-"><span><input type="number" name="quantity" id="quantity" value="1" readonly><input type="button" name="plus" onclick="Increase();" value="+"></span>
                             <?php if ($user) { ?>
                                 <input type="submit" name="add" id="submit1" class="btn btn-outline-warning" value="Add To Cart">
@@ -230,8 +230,8 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
                         <div class="product-infor">
                             <a href="categoryPage.php?category_id=<?php echo $product['category_id'] ?>" class="product-cart">
                                 <?= $product['menu_name'] ?></a><br>
-                            <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-name"><?= mysubstr($product['name'], 10) ?></a><br>
-                            <div class="product-price">$<?= $product['price'] ?></div>
+                            <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-name"><?= mysubstr($product['name'], 23) ?></a><br>
+                            <div class="product-price"><?= $english_format_number= number_format($product['price']) ?> VND</div>
                         </div>
                     </div>
                 </div>
