@@ -21,7 +21,9 @@ include('header.php');
     .felling i {
         color: #F75813;
     }
-    .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show>.nav-link {
         background-color: #F75813;
     }
 </style>
@@ -31,86 +33,74 @@ include('header.php');
     </div>
 
     <div class="row">
-    <div class="col-2 nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link active text-left" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Shopping Guide</a>
-        <a class="nav-link text-left" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Sales guide for newbies</a>
-    </div>
-    <div class=" col-10 tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            <p>Users can order one or more products easily on <a href="homePage.php" style="color:rgb(17, 85, 204);background-color: transparent;" target="_blank"><u>Tasha's web platform</u></a></p>
-            <p>Before ordering the product, you need:</p>
-            <ul>
-                <li>Successfully registered and logged in a valid Tasha account, and this account needs to be verified/updated with the necessary personal information to may be used</li>
-                <li>Browse and choose the right product. Some information to know when choosing a product:</li>
-                <li>Image, product name</li>
-                <li>Seller Classification (Regular Shop, Favorite Shop, Favorite Shop+)</li>
-                <li>Product price (original price / discount price)</li>
-                <li>Place of sale (province/city)</li>
-                <li>Product Reviews</li>
-                <li>Number of products sold</li>
-                <li>Structure information, features, warranty (if any)</li>
-            </ul>
-            <p>After searching and selecting the product you want to buy, you can place an order in 01 of the following 02 ways:</p>
-            <h6>1. Buy and pay now</h6>
-            <p>Select <b>Buy now </b>> select <b>Category</b> and <b>Quantity</b> of products you want to order > select <b>Buy now</b> >
-                select <b>Order</b> > select <b>Checkout</b> and complete the verification steps depending on the payment method to complete the order</p>
-            <h6>2. Add products to Cart before checkout</h6>
-            <p>On the <b>Product Information</b> page of the product, select <b>Add to Cart</b> > select <b>Category</b> and <b>Quantity</b> of Products you want to order >
-                select <b>Add to Cart</b> > select <b>Shopping Cart</b> (icon <i style="font-size:20px; color:#F75813" class="fa-solid fa-cart-shopping"></i>) > select the products you want to order >
-                Adjust Quantity and Category of products (if any) > select <b>Purchase</b> > follow the rest of the steps as shown below. first</p>
+        <div class="col-2 nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active text-left" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Shopping Guide</a>
+            <a class="nav-link text-left" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Guarantee Policy</a>
         </div>
-        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-            <p>Are you thinking of selling, online business or looking to promote online sales?</p>
-            <p>In this article, we will give general tips on how to sell online for beginners effectively.No matter what product you want to sell, you
-                can start selling online from home. Here's how to get started:</p>
-            <h6>1. Find out the market demand and the product you want to sell</h6>
-            <p>Most people who are just starting to sell online often make the mistake of finding a source for the product they want to sell and then finding out the market.
-                However, the sequence should go from searching for market needs to knowing what users are looking for, then researching appropriate products that can meet that need.</p>
-            <p>To determine which ideas are a good fit, combine exploration of current market interests, strengths, and needs. You can research at:</p>
-            <ul>
-                <li><b>Social networks</b>: Facebook, Instagram, Zalo,...,</li>
-                <li><b>Join groups, communities, consulting</b> find out what problems your customers are having</li>
-                <li><b>Keyword research</b> Google or <a href="https://trends.google.com/trends/?geo=VN" target="_blank" style="color: rgb(17, 85, 204); background-color: transparent;"><u>Google Trends</u></a>
-
-                    to see which keywords many people want to find but there are few places to meet them</li>
-                <li><b>Find out at e-commerce sites</b> to know which products and industries are developing and selling well.</li>
-            </ul>
-            <h6>2. Research competitors and understand customers</h6>
-            <p>After market research, choose business products. Next, you should <b>get to know your opponent</b> what are you doing and how effective are the customers. Afterward
-                <b>research your customers carefully</b>,who are they, where are they, what do they care about, what do they think when they shop online, their psychology, etc. The better you understand your customers,
-                the better your sales plan and goals will be. online is more suitable.
-            </p>
-            <h6>3. Omnichannel selling and choosing the right sales channel</h6>
-            <p>What product are you selling, who are the target customers that your product reaches, with what behavior or habits?
-                With the digital age and the impact of the pandemic, you not only have a Facebook channel or a social network to sell online effectively, but also can
-                <b>expand and combine more channels</b> to easily reach your target audience.
-            </p>
-            <h6>4. Check and optimize selling costs and shipping costs for online orders</h6>
-            <p>The cost of selling online will vary according to different sales channels. <b>The cost of selling online will vary according to different sales channels.</b>
-                Shipping costs are often a barrier for online shoppers, so minimizing the shipping costs of online orders helps your shop save costs and attract more customers.</p>
-            <h6>5. Products come with quality pictures</h6>
-            <p>Because of online sales, customers will not directly see, touch and feel the product and product quality. Therefore, beautiful images will help customers visualize the product details before closing the order,
-                helping to promote purchase motivation.</p>
-            <p><b>In order to have a product with a beautiful and attractive image, the Seller should:</b></p>
-            <ul>
-                <li>Take photos in a well-lit area</li>
-                <li>Choose a simple background/photo background</li>
-                <li>Limit the use of filters/filters</li>
-                <li>Shoot different angles of the product</li>
-            </ul>
-            <h6>6. Detailed product description</h6>
-            <p>Please <b>describe the product honestly and in detail</b> của bạn khi đăng bán online và bao gồm <b>correct and relevant keywords</b>
-                make it easy for your products to show up in search results when buyers search for related products.</p>
-            <h6>7. Invest in product advertising</h6>
-            <p>Nowadays, the online sales market is extremely competitive, how can you get ahead of the competition or at least win more orders? That is investing in more advertising to increase reach with target customers.
-                <b>Advertise with the right content with beautiful product images</b> will motivate customers to buy your product.
-            </p>
-            <h6>8. Focus on customer care and satisfaction</h6>
-            <p>An immutable rule for success when selling online: <b>customer-centricity.</b> According to research from Retail Wire, customers trust product reviews of customers who have purchased as much as recommendations
-                from friends and family. Therefore, online sellers must ensure to monitor reviews / reviews from customers, feedback to maintain good reviews for their shop.</p>
-            <p>Besides, responding to customer messages also helps you improve the quality of customer care, creating a close relationship with buyers.</p>
+        <div class=" col-10 tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <p>Users can order one or more products easily on <a href="homePage.php" style="color:rgb(17, 85, 204);background-color: transparent;" target="_blank"><u>Tasha's web platform</u></a></p>
+                <p>Before ordering the product, you need:</p>
+                <ul>
+                    <li>Successfully registered and logged in a valid Tasha account, and this account needs to be verified/updated with the necessary personal information to may be used</li>
+                    <li>Browse and choose the right product. Some information to know when choosing a product:</li>
+                    <li>Image, product name</li>
+                    <li>Seller Classification (Regular Shop, Favorite Shop, Favorite Shop+)</li>
+                    <li>Product price (original price / discount price)</li>
+                    <li>Place of sale (province/city)</li>
+                    <li>Product Reviews</li>
+                    <li>Number of products sold</li>
+                    <li>Structure information, features, warranty (if any)</li>
+                </ul>
+                <p>After searching and selecting the product you want to buy, you can place an order in 01 of the following 02 ways:</p>
+                <h6>1. Buy and pay now</h6>
+                <p>Select <b>Buy now </b>> select <b>Category</b> and <b>Quantity</b> of products you want to order > select <b>Buy now</b> >
+                    select <b>Order</b> > select <b>Checkout</b> and complete the verification steps depending on the payment method to complete the order</p>
+                <h6>2. Add products to Cart before checkout</h6>
+                <p>On the <b>Product Information</b> page of the product, select <b>Add to Cart</b> > select <b>Category</b> and <b>Quantity</b> of Products you want to order >
+                    select <b>Add to Cart</b> > select <b>Shopping Cart</b> (icon <i style="font-size:20px; color:#F75813" class="fa-solid fa-cart-shopping"></i>). Follow the rest of the steps as shown below.</p>
+                <b class="mb-4">Step1</b>
+                <img class="w-100" src="./assets/images/buynow.png" alt="">
+                <b class="mb-4">Step2</b>
+                <img class="w-100" src="./assets/images/buynow1.png" alt="">
+                <b class="mb-4">Step3</b>
+                <img class="w-100" src="./assets/images/step3.png" alt="">
+            </div>
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <h6>1. Wrranty Conditions:</h6>
+                <p><b>The product is warranted free of charge if it meets the following conditions:</b></p>
+                <ul>
+                    <li>The product has a technical defect due to the manufacturer</li>
+                    <li>Still within the warranty period (on the warranty card or on the electronic warranty system)</li>
+                    <li>Have an electronic invoice (when requested by the Buyer) or an order number (order ID)</li>
+                    <li>All cases where customers report errors with unclear or uncertain information must be transferred to the Warranty Center for evaluation before making a decision on warranty or return of goods.</li>
+                </ul>
+                <p><b>Cases that are not covered by warranty or incur warranty fees:</b></p>
+                <ul>
+                    <li>Invalid product model and serial number (does not match the information on the Warranty Card or on the electronic warranty system)</li>
+                    <li>Customers arbitrarily intervene to repair products or repair at warranty centers that are not authorized by the Company</li>
+                    <li>The product is damaged due to user error, and the defect is not covered by the manufacturer's warranty</li>
+                </ul>
+                <h6>2. Guarantee time </h6>
+                <p>The warranty period is calculated from the date of purchase or the date of receipt of the product, depending on the product of each different manufacturer.</p>
+                <p>For electronic warranty products, the warranty period is calculated from the time of electronic warranty activation</p>
+                <p>Note: Buyers can send VAT invoice request to Tasha Customer Care for assistance</p>
+                <h6>3. Service Center</h6>
+                <p>Information of the service center will be recorded in the warranty card attached to the product or on the detailed information description of the product. Please contact the warranty center directly for support in the shortest time</p>
+                <p>In case you have difficulty contacting the service center, are too far away from the service center or have inconveniences that cannot be reached directly, you can contact Customer Care. Tasha customer care for support:</p>
+                <p>1. Hotline: 1-800-234-9000</p>
+                <p>2. Email: tasha@yourcompany.com</p>
+                <h6>4. Warranty period</h6>
+                <p><b>a. Manufacturer's warranty</b></p>
+                <p>The supplied products are guaranteed to be genuine, so Shopee encourages you to send the product directly to the warranty address mentioned in the detailed description of the product for warranty support in the fastest time.</p>
+                <p>The average warranty period is from a few days depending on the parts that need to be replaced and the Service Center will notify you specifically.</p>
+                <div class="d-flex justify-content-center"><img src="./assets/images/manuals.jpg" alt=""></div>
+                <p><b>b. Warranty through Tasha</b></p>
+                <p>In case you send a warranty product to Tasha, we will send a confirmation message to you when Tasha receives the product.</p>
+                <p>Your product warranty period is expected from 20 days to 45 working days from the time Tasha receives the product, depending on the company's replacement parts and Tasha will notify you in detail after there is information from the warranty party</p>
+                <p>* For details or questions, please contact Tasha for support. Sincerely thank.</p>
+            </div>
         </div>
-    </div>
     </div>
 
     <div class="useful">

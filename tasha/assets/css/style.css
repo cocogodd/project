@@ -99,6 +99,9 @@ font-size: 25px;
     font-size: 14px;
     font-weight: 600;
 }
+.navbar-nav .dropdown-item.active, .navbar-nav .dropdown-item:active{
+background-color: #F75813 !important;
+}
 header hr{
     margin: 0;
 }
