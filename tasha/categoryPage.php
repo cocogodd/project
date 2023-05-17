@@ -66,7 +66,7 @@ if (!function_exists('connect')) {
             <div class="product-infor">
               <a href="categoryPage.php?category_id=<?php echo $product['category_id'] ?>" class="product-cart"> <?= $product['menu_name'] ?></a><br>
               <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-name"><?= mysubstr($product['name'], 10) ?></a><br>
-              <div class="product-price">$<?= $product['price'] ?></div>
+              <div class="product-price"><?= $product['price'] ?>VND</div>
             </div>
           </div>
         </div>
@@ -143,7 +143,7 @@ if (!function_exists('connect')) {
             <div class="product-infor">
               <a href="categoryPage.php?category_id=<?php echo $product['category_id'] ?>" class="product-cart"> <?= $product['menu_name'] ?></a><br>
               <a href="productDetail.php?id=<?php echo $product['id'] ?>" class="product-name"><?= mysubstr($product['name'], 10) ?></a><br>
-              <div class="product-price">$<?= $product['price'] ?></div>
+              <div class="product-price"><?= $product['price'] ?>VND</div>
             </div>
           </div>
         </div>
