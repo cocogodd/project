@@ -2,7 +2,7 @@
 include('header.php');
 ?>
 <?php
-    $conn = new mysqli('localhost:3307', 'root', '12345678', 'project');
+    $conn = new mysqli('localhost:3306', 'root', '12345678', 'project');
     if ($conn->connect_error) {
         die("ket noi that bai" . $conn->connect_error);
     }

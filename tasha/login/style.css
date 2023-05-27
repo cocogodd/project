@@ -151,3 +151,6 @@ span a:hover{
         max-width: 420px;
     }
 }
+::placeholder {
+ color: red;
+}

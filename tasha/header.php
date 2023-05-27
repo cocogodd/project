@@ -68,6 +68,7 @@
                         <span id="avatar" class="d-flex justify-content-center align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(substr($user, 0, 1)) ?></span>
 
                         <div class="dropdown-menu" aria-labelledby="avatar">
+                            <a class="dropdown-item" href="order.php">Your order</a>
                             <a class="dropdown-item" href="login/sign_in.php">Logout</a>
                         </div>
                     </div>

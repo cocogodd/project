@@ -13,6 +13,51 @@
 </head>
 
 <body>
+<?php
+$conn = new mysqli('localhost:3306','root','12345678','project');
+if($conn->connect_error) {
+    die("ket noi that bai" .$conn->connect_error);
+}
+
+session_start();
+if (isset($_POST['delete'])) {
+    if (isset($_SESSION['cart']))
+    {
+        for ($i = $_POST['index']; $i < sizeof($_SESSION['cart']); $i++)
+        {
+            $_SESSION['cart'][$i] = $_SESSION['cart'][$i+1];
+        }
+        unset($_SESSION['cart'][sizeof($_SESSION['cart']) - 1]);
+    }
+    header('location:cart.php');
+}
+
+if (isset($_POST['order'])) {
+    if (isset($_SESSION['cart'])) {
+        $sql = "INSERT INTO project.order (user, product_name, total_price, address, order_date, status) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssss", $user, $product_name, $total_price, $address, $order_date, $status);
+        $user = $_SESSION['user'];
+        $product_name = $_POST['name'];
+        $total_price = $_POST['price'];
+        $address = $_POST['address'];
+        $order_date = date('Y-m-d H:i:s');
+        $status = 'On Delivery';
+        if ($stmt->execute() === TRUE) {
+            unset($_SESSION['cart']);
+            header('location:order.php');
+        }
+        $stmt->close();
+    }
+    else
+    {
+        echo '<script>alert("Chưa có sản phẩm nào trong giỏ hàng.")</script>';
+    }
+}
+
+$total = 0;
+$nameProduct = null;
+?>
     <div class="card">
         <div class="row">
             <!-- CART LIST -->
@@ -26,7 +71,6 @@
                         <!-- TOTAL ITEM IN THE CART -->
                         <div class="col align-self-center text-right text-muted">
                             <span><?php
-                                    session_start();
                                     if (isset($_SESSION['cart'])) {
                                         echo sizeof($_SESSION['cart']);
                                     } else {
@@ -40,11 +84,11 @@
 
                 </div>
                 <?php
-
                 if (isset($_SESSION['cart'])) {
                     for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
                         echo
-                        '<div class="row border-top border-bottom">
+                        '<form action="" method="post" style="padding:0">
+                            <div class="row border-top border-bottom">
                                 <div class="row main align-items-center">
                                     <div class="col-2">
                                     <img class="img-fluid" src="./upload/' . $_SESSION['cart'][$i]['img'] . '"></div>
@@ -53,36 +97,28 @@
                                     </div>
                                     <!-- Update Quantity -->
                                     <div class="col">
-                                        <input type="number" class="quantity" value="' . $_SESSION['cart'][$i]['quantity'] . '" id="quantity" readonly>
+                                        <input type="number" name="quantity" class="quantity" value="' . $_SESSION['cart'][$i]['quantity'] . '" id="quantity" readonly>
                                     </div>
                                     <!-- Price -->
                                     <div class="col">' . number_format($_SESSION['cart'][$i]['price']) . ' đ
-                                        <!-- Remove Item -->
-                                        
+                                    </div>
+                                    <div class="col">
+                                        <input type="hidden" name="index" value="' . $i . '">
+                                        <button type="submit" name="delete" style="border:none; background:none; padding:0; font-size:12px; color:red;">x</button>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>
+                        </form>';
+                        $nameProduct = $nameProduct . $_SESSION['cart'][$i]['name'] . ' [x'.$_SESSION['cart'][$i]['quantity'].']' . '<br>';
+                        $total = $total + $_SESSION['cart'][$i]["price"];
                     }
                 }
 
 
                 ?>
-                <form action="" method="post">
-                <div class="back-to-shop"><a href="homePage.php">&leftarrow; Back to shop</a>
-                    <span>
-                        
-                            <input type="submit" class="remove" name="remove" value="Remove all items">
-                        
-                    </span>
+                <div class="back-to-shop" style="display:contents"><a href="homePage.php">&leftarrow; Back to shop</a>
                 </div>
-                </form>
             </div>
-            <?php
-            if (isset($_POST['remove'])) {
-                unset($_SESSION['cart']);
-                header('location:homePage.php');
-            }
-            ?>
 
             <!-- SUMMARY -->
             <div class="col-md-4 summary">
@@ -120,26 +156,25 @@
                         <option class="text-muted" value="300000">Fast-Delivery- 300.000đ</option>
                         <option class="text-muted" value="1550000">Global-Delivery- 1.550.000đ</option>
                     </select>
+
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">TOTAL PRICE:</div>
+                        <div class="col text-right">
+                            <?php
+                                echo isset($_SESSION['cart']) ? number_format($total) . ' đ' : null;
+                                $result = mysqli_query($conn, "SELECT * FROM user WHERE name = '" . $_SESSION['user'] . "'");
+                                $user = mysqli_fetch_assoc($result);
+                            ?>
+                        </div>
+                    </div>
+                    <input type="hidden" name="name" value="<?php echo $nameProduct; ?>">
+                    <input type="hidden" name="price" value="<?php echo $total; ?>">
+                    <input type="hidden" name="address" value="<?php echo $user['address']; ?>">
+                    <input type="submit" style="font-size: 15px; font-weight: 600;" name="order" value="CHECKOUT" class="btn">
                 </form>
-                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                    <div class="col">TOTAL PRICE:</div>
-                    <div class="col text-right"><?php
-                                                if (isset($_SESSION['cart'])) {
-                                                    $total = 0;
-                                                    for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
-                                                        $total = $total + $_SESSION['cart'][$i]["price"];
-                                                    }
-                                                    echo number_format($total) . ' đ';
-                                                }
-                                                ?></div>
-                </div>
-                <button style="font-size: 15px; font-weight: 600;" class="btn" href="">CHECK OUT</button>
             </div>
         </div>
     </div>
 </body>
-<?php
-
-?>
 
 </html>

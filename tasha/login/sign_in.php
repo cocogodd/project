@@ -32,11 +32,11 @@ include("sign_in_be.php");
                             <h1>Login</h1>
 
                             <div class="input-field">
-                                <input type="text" class="input" name="name" id="name" placeholder="<?php echo isset($user) ? $user : ''; ?>" >
+                                <input type="text" class="input" name="name" id="name" placeholder="<?php echo isset($errorLogin['name']) ? $errorLogin['name'] : ''; ?>" >
                                 <label for="name">Username</label>
                             </div>
                             <div class="input-field">
-                                <input type="password" class="input" name="password" id="password" placeholder=" <?php echo isset($pass) ? $pass : ''; ?>">
+                                <input type="password" class="input" name="password" id="password" placeholder="<?php echo isset($errorLogin['password']) ? $errorLogin['password'] : ''; ?>">
                                 <label for="password">Password</label>
                             </div>
                              <br>

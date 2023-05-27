@@ -1,32 +1,59 @@
 <?php 
-    session_start();
-    unset($_SESSION['user']);
+ session_start();
+ unset($_SESSION['user']);
+   function connect() {
      $conn = new mysqli('localhost:3306','root','12345678','project');
      if($conn->connect_error) {
          die("ket noi that bai" .$conn->connect_error);
      }
-     $sql = "SELECT name, password from user";
-            $result = $conn->query($sql);
+     return $conn;
+    }
+    function close($stmt,$conn) {
+        $stmt->close();
+        $conn->close();
+    }
 
-    if(isset($_POST["submit"])) {
-        $name = $_POST["name"];
-        $password = $_POST["password"];
-        if($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                if ($name != $row['name']) {
-                    $user = "Username does not exist";
-                } else if (!password_verify($_POST['password'], $row['password'])) {
-
-                    $pass = "You entered wrong password";
+    function check_user($username_input){     
+        $conn = connect();
+        $sql = "SELECT name, password, role_id FROM user WHERE name = ? ";
+        $stmt = $conn -> prepare($sql);
+        $stmt -> bind_param("s",$username);
+        $username = $username_input;
+        $stmt -> execute();
+        $result = $stmt -> get_result();       
+        close($stmt,$conn);
+        return $result;
+    }
+    $dataLogin = array();
+    $errorLogin = array();
+    $flag = 0;
+    if (!empty($_POST['submit'])){
+        $dataLogin['name'] = isset($_POST['name']) ? $_POST['name'] : '';
+        $dataLogin['password'] = isset($_POST['password']) ? $_POST['password'] : '';
+        $resultCheckUser = check_user($dataLogin['name']);
+        if($resultCheckUser->num_rows>0){
+            while($rowCheckUser = $resultCheckUser->fetch_assoc()){
+                if (empty($dataLogin['password'])){
+                    $errorLogin['password'] = "Please enter your password.";
+                }else if (!password_verify($dataLogin['password'], $rowCheckUser['password'])){
+                    $errorLogin['password'] = "The password is wrong!";
+                } else if ($rowCheckUser['role_id'] == 1){
+                    $flag = 1;
                 }
-                if ($name == $row['name'] && password_verify($_POST['password'], $row['password'])){
-                    $_SESSION["user"] = $name;
-                    header("Location: ../homePage.php");
-                }
-                
+            }
+        } else {
+            if (empty($dataLogin['password'])){
+                $errorLogin['password'] = "Please enter your password.";
+            }
+            if (empty($dataLogin['uname'])){
+                $errorLogin['name'] = "Please enter your username.";
+            } else{
+                $errorLogin['name'] = "This user does not exist!";
             }
         }
+        if (!$errorLogin){
+            $_SESSION['user'] = $dataLogin['name'];                      
+                header("location:../homePage.php");
+            
+        } 
     }
-    $conn->close();
-   
-    ?>
