@@ -188,11 +188,14 @@ $bestSeller = $conn->query("SELECT product.*,categories.menu_name,categories.id 
     margin-right: 10px;
     border-color: #F75813;
 }
-
-#submit {
+#submit1:hover {
+    color: white;
+    background-color: #F75813;
+}
+/* #submit {
     background-color: #F75813;
     color: white;
-}
+} */
 
 h4 {
     margin: 20px 0;
@@ -308,13 +311,13 @@ h4 {
                         <a href="login/sign_in.php">Add To Cart</a>
                     </button>
                     <?php } ?>
-                    <?php if ($user) { ?>
+                    <!-- <?php if ($user) { ?>
                             <input type="submit" name="submit" id="submit" value="Buy Now">
                     <?php } else { ?>
                     <button id="submit" >
                         <a style="color: #fff" href="login/sign_in.php">Buy Now</a>
                     </button>
-                    <?php } ?>
+                    <?php } ?> -->
                 </div>
 
                 <div class="description">
