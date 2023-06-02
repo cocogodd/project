@@ -24,15 +24,14 @@ DROP TABLE IF EXISTS `order`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `order` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `total_price` varchar(1000) DEFAULT NULL,
-  `quantity` int DEFAULT NULL,
-  `order_date` varchar(450) DEFAULT NULL,
-  `customer` varchar(450) DEFAULT NULL,
-  `user_id` int NOT NULL,
-  `image` varchar(1000) DEFAULT NULL,
+  `user` varchar(1000) NOT NULL,
+  `product_name` varchar(1000) NOT NULL,
+  `total_price` varchar(1000) NOT NULL,
+  `address` varchar(1000) NOT NULL,
+  `order_date` datetime NOT NULL,
+  `status` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_order_user1_idx` (`user_id`),
-  CONSTRAINT `fk_order_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  KEY `fk_order_user1_idx` (`address`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ucs2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -42,7 +41,6 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,'200000đ',1,'6/5/2023','Haanh',1,'pot1.jpg');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-14 12:55:20
+-- Dump completed on 2023-05-25 16:13:11
