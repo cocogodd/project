@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,9 +11,7 @@
     <link rel="stylesheet" href="admin.css">
     <title>Document</title>
 
-    <style>
-
-
+   
 
     </style>
 </head>
@@ -20,10 +19,22 @@
 <body>
     <?php
         require "model/config.php";
-        require "model/add-product.php";
+        require "model/add-product.php"; 
     ?>
     <form action="" method="post">
-        <div class="container" style="border: 1px solid black;">
+    
+        <div class="header">
+                <input class="navli" name="productLi" type="submit" value="Product list" >
+                <input class="navli" name="userLi" type="submit" value="User list">
+                <input class="navli" name="orderLi" type="submit" value="Order list">
+                <input class="navli" type="submit" name="addProduct" value="Add Product">
+        </div>
+    </form>
+
+    <form action="" method="post">
+        
+        
+        <div class="container" >
             <div class="one">
                 <div class="update">
                     <h3>Update Items information</h3>
@@ -32,35 +43,35 @@
                     <table>
                         <div style="float:left;">
                         <tr>
-                            <td>Items name:</td>
+                            <td>Items name</td>
                             <td><input type="text" name="name" required></td>
                         </tr>
                         <tr>
-                            <td>Price:</td>
+                            <td>Price</td>
                             <td><input type="number" name="price" required></td>
                         </tr>
                         <tr>
-                            <td>Image:</td>
+                            <td>Image</td>
                             <td><input type="text" name="image" required></td>
                         </tr>
                         <tr>
-                            <td>Quantity:</td>
+                            <td>Quantity</td>
                             <td><input type="number" name="quantity" required></td>
                         </tr>
                         <tr>
-                            <td>Description:</td>
+                            <td>Description</td>
                             <td><input type="text" name="description" required></td>
                         </tr>
                         <tr>
-                            <td>Discount:</td>
+                            <td>Discount</td>
                             <td><input type="number" name="discount"></td>
                         </tr>
                         <tr>
-                            <td>Made in:</td>
+                            <td>Made in</td>
                             <td><input type="text" name="made" required></td>
                         </tr>
                         <tr>
-                            <td>Category:</td>
+                            <td>Category</td>
                             <td><input type="text" name="category" required></td>
                         </tr>
                         <tr>

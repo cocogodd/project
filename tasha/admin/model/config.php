@@ -1,7 +1,7 @@
 <?php
     function connect() {
-        $con = mysqli_connect('localhost:3307', 'root', '12345678', 'project');
-        return $con;
+        $conn = mysqli_connect('localhost', 'root', '12345678', 'project');
+        return $conn;
     }
 
     $conn = connect();

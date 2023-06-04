@@ -8,8 +8,8 @@
                 '<tr class="content">
                     <td>' . $row['id'] . '</td>
                     <td>' . $row['name'] . '</td>
-                    <td>' . $row['quantity'] . '</td>
-                    <td>' . $row['price'] . '</td>
+                    <td>' .  $english_format_number= number_format($row['quantity']) . '</td>
+                    <td>' . $english_format_number= number_format($row['price'])  . '</td>
                     <input type="hidden" name="id" value="' . $row['id'] . '">
                     <td><a href="updateProductLi.php?id=' . $row['id'] . '"><input type="button" name="update" value="update"></a></td>
                 </tr>';

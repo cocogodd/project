@@ -25,6 +25,7 @@
             <input class="navli" name="productLi" type="submit" value="Product list">
             <input class="navli" name="userLi" type="submit" value="User list">
             <input class="navli" name="orderLi" type="submit" value="Order list">
+            <input class="navli" type="submit" name="addProduct" value="Add Product">
         </div>
         <div class="container">
             <div class="list">
