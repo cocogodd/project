@@ -45,15 +45,23 @@
             if (empty($dataLogin['password'])){
                 $errorLogin['password'] = "Please enter your password.";
             }
-            if (empty($dataLogin['uname'])){
+            if (empty($dataLogin['name'])){
                 $errorLogin['name'] = "Please enter your username.";
             } else{
                 $errorLogin['name'] = "This user does not exist!";
             }
         }
         if (!$errorLogin){
-            $_SESSION['user'] = $dataLogin['name'];                      
+            $conn = connect();
+            $result = mysqli_query($conn, "SELECT * FROM user WHERE name = '" . $dataLogin['name'] . "'");
+            $users = mysqli_fetch_assoc($result);
+            $_SESSION['user'] = $dataLogin['name'];
+            $_SESSION['role'] = $users['role_id'];
+            if ($_SESSION['role'] == 1) {
                 header("location:../homePage.php");
-            
+            }
+            else {
+                header("location:../admin/productLi.php");
+            }
         } 
     }

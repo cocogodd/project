@@ -19,14 +19,15 @@
         function insertUser($name_i, $pass_i, $email_i, $phone_i, $address_i) {
             $product_id = 0;
             $conn = connect(); 
-            $sql = "INSERT INTO user (name, password, email, phone_number, address) VALUES(?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO user (name, password, email, phone_number, address, role_id) VALUES(?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssss", $name, $password, $email, $phone, $address);
+            $stmt->bind_param("sssssi", $name, $password, $email, $phone, $address, $role);
             $name = $name_i;
             $password = $pass_i;
             $email = $email_i;
             $phone = $phone_i;
             $address = $address_i;
+            $role = 1;
             if($stmt->execute() === TRUE) {
                 $last_id = $conn->insert_id;
                 $product_id = $last_id;
