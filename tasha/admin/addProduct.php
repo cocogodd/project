@@ -1,79 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include('headerAdmin.php');
+?>
+<?php
+ require "model/config.php";
+ require "model/add-product.php";
+?>
+<div class="pr-5 pl-5 pt-2 pb-2 ">
+<h1 class="h3 mb-4 text-gray-800">Add Product</h1>
+<form class="row " action="" method="post">
+    <div class="col-md-6">
+        <label for="name" class="form-label">Items name:</label>
+        <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="col-md-6">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" name="price" required>
+    </div>
+    <div class="col-6">
+        <label for="image" class="form-label">Image</label>
+        <input type="text" class="form-control" name="image" required>
+    </div>
+    <div class="col-6">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input type="number" class="form-control" name="quantity"  required>
+    </div>
+    <div class="col-md-6">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" class="form-control" name="description"  required>
+    </div>
+    <div class="col-md-6">
+        <label for="made" class="form-label">Made</label>
+        <input type="text" class="form-control" name="made" required>
+    </div>
+    <div class="col-md-6">
+        <label for="discount" class="form-label">Discount</label>
+        <input type="number" class="form-control" name="discount" >
+    </div>
+    <div class="col-md-6">
+        <label for="category" class="form-label">Category</label>
+        <input type="text" class="form-control" name="category" required>
+    </div>
+    <div class="col-12 mt-4">
+        <input type="submit" value="Add" name="add" class="btn btn-primary">
+        <input type="submit" value="Cancel" name="cancel" class="btn btn-danger">
+    </div>
+</form>
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="admin.css">
-    <title>Document</title>
-
-    <style>
-
-
-
-    </style>
-</head>
-
-<body>
-    <?php
-        require "model/config.php";
-        require "model/add-product.php";
-    ?>
-    <form action="" method="post">
-        <div class="container" style="border: 1px solid black;">
-            <div class="one">
-                <div class="update">
-                    <h3>Update Items information</h3>
-                </div>
-                <div>
-                    <table>
-                        <div style="float:left;">
-                        <tr>
-                            <td>Items name:</td>
-                            <td><input type="text" name="name" required></td>
-                        </tr>
-                        <tr>
-                            <td>Price:</td>
-                            <td><input type="number" name="price" required></td>
-                        </tr>
-                        <tr>
-                            <td>Image:</td>
-                            <td><input type="text" name="image" required></td>
-                        </tr>
-                        <tr>
-                            <td>Quantity:</td>
-                            <td><input type="number" name="quantity" required></td>
-                        </tr>
-                        <tr>
-                            <td>Description:</td>
-                            <td><input type="text" name="description" required></td>
-                        </tr>
-                        <tr>
-                            <td>Discount:</td>
-                            <td><input type="number" name="discount"></td>
-                        </tr>
-                        <tr>
-                            <td>Made in:</td>
-                            <td><input type="text" name="made" required></td>
-                        </tr>
-                        <tr>
-                            <td>Category:</td>
-                            <td><input type="text" name="category" required></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" value="add" name="add">
-                            <input type="submit" value="cancel" name="cancel"></td>
-                        </tr>
-                        </div>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </form>
-</body>
-
-</html>
+<?php
+include('footerAdmin.php');
+?>
