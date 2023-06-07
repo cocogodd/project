@@ -15,7 +15,7 @@
                     <td>
                         <form action="" method="post">
                             <input type="hidden" name="id" value="' . $row['id'] . '">
-                            <input type="submit" name="update" value="update">
+                            <i class="fa-solid fa-pen-to-square" style="color: #E95616"></i>
                         </form>
                     </td>
                 </tr>';

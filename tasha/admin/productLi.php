@@ -1,46 +1,40 @@
 <?php
-    if(isset($_POST['userLi'])) {
-        header('location:userLi.php');
-    }
+include('headerAdmin.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require "model/config.php";
+require "model/select-product.php";
+?>
+<div class="container-fluid">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="admin.css">
-</head>
-
-<body>
-    <?php
-        require "model/config.php";
-        require "model/select-product.php";
-    ?>
-    <form action="" method="post">
-        <div class="header">
-            <input class="navli" name="productLi" type="submit" value="Product list">
-            <input class="navli" name="userLi" type="submit" value="User list">
-            <input class="navli" name="orderLi" type="submit" value="Order list">
-            <input class="navli" type="submit" name="addProduct" value="Add Product">
-        </div>
-        <div class="container">
-            <div class="list">
-                <table>
-                    <tr class="rows">
-                        <td>ID</td>
-                        <td>Items name</td>
-                        <td>Quantity</td>
-                        <td>Price/product</td>
-                        <td></td>                 
-                    </tr>
-                    <?php SelectProduct(); ?>
+    <h1 class="h3 mb-2 text-gray-800">Products</h1>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <a class="btn btn-info mb-4" style="background-color: #E95616; border:0" href="addProduct.php">Add Product</a>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Items name</th>
+                            <th>Quantity</th>
+                            <th>Price/product</th>
+                            <th class="hide-sort"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php SelectProduct(); ?>
+                    </tbody>
                 </table>
             </div>
         </div>
-    </form>
-</body>
-</html>
+    </div>
+
+</div>
+
+</div>
+
+
+<?php
+include('footerAdmin.php');
+?>

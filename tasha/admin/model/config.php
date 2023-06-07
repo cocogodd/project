@@ -1,11 +1,10 @@
 <?php
     function connect() {
-        $conn = mysqli_connect('localhost', 'root', '12345678', 'project');
-        return $conn;
+        $con = mysqli_connect('localhost','root', '12345678', 'project');
+        return $con;
     }
 
     $conn = connect();
-    session_start();
 
     date_default_timezone_set("Asia/Ho_Chi_Minh");
 
