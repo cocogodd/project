@@ -21,7 +21,7 @@ include('header.php');
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="./order.css">
+    <link rel="stylesheet" href="/project/tasha/assets/css//order.css">
 
 </head>
 
